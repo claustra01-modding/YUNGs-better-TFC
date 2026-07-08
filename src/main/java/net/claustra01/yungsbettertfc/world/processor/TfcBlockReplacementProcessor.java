@@ -363,8 +363,15 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
             return firepit;
         }
 
+        if (beneathNether && "nether_gold_ore".equals(vanillaPath)) {
+            @Nullable ResourceLocation beneath = mapBeneathNether(vanillaPath);
+            if (beneath != null) {
+                return beneath;
+            }
+        }
+
         // Replace vanilla ore blocks with TFC ores when available.
-        @Nullable ResourceLocation ore = mapOre(vanillaPath);
+        @Nullable ResourceLocation ore = mapOre(vanillaPath, rock);
         if (ore != null) {
             return ore;
         }
@@ -377,6 +384,12 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
         @Nullable ResourceLocation stone = mapStone(vanillaPath, rock, infested);
         if (stone != null) {
             return stone;
+        }
+
+        // Sandstone families (sand color-dependent).
+        @Nullable ResourceLocation sandstone = mapSandstone(vanillaPath);
+        if (sandstone != null) {
+            return sandstone;
         }
 
         // Soils (soil-dependent).
@@ -420,7 +433,7 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
 
     private static @Nullable ResourceLocation mapFirepit(String vanillaPath) {
         return switch (vanillaPath) {
-            case "furnace" -> TFC_FIREPIT;
+            case "furnace", "blast_furnace" -> TFC_FIREPIT;
             default -> null;
         };
     }
@@ -513,18 +526,47 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
     }
 
     private static @Nullable ResourceLocation mapOre(String vanillaPath) {
+        return mapOre(vanillaPath, DEFAULT_ROCK_OVERWORLD);
+    }
+
+    private static @Nullable ResourceLocation mapOre(String vanillaPath, String rock) {
         return switch (vanillaPath) {
-            case "coal_ore", "deepslate_coal_ore" -> firstExistingTfcBlock("ore/normal_lignite", "ore/normal_bituminous_coal");
+            case "coal_ore", "deepslate_coal_ore" -> firstExistingTfcBlock("lignite", "bituminous_coal");
             case "iron_ore", "deepslate_iron_ore" ->
-                    firstExistingTfcBlock("ore/normal_hematite", "ore/normal_magnetite", "ore/normal_limonite");
-            case "copper_ore", "deepslate_copper_ore" -> firstExistingTfcBlock("ore/normal_native_copper");
-            case "gold_ore", "deepslate_gold_ore" -> firstExistingTfcBlock("ore/normal_native_gold");
-            case "nether_gold_ore" -> firstExistingTfcBlock("ore/normal_nether_gold", "ore/normal_native_gold");
-            case "lapis_ore", "deepslate_lapis_ore" -> firstExistingTfcBlock("ore/normal_lapis_lazuli");
-            case "diamond_ore", "deepslate_diamond_ore" -> firstExistingTfcBlock("ore/normal_diamond");
-            case "emerald_ore", "deepslate_emerald_ore" -> firstExistingTfcBlock("ore/normal_emerald");
-            case "redstone_ore", "deepslate_redstone_ore" -> firstExistingTfcBlock("ore/normal_cinnabar");
-            case "nether_quartz_ore" -> firstExistingTfcBlock("ore/normal_quartz");
+                    firstExistingTfcOre(rock, "normal_hematite", "normal_magnetite", "normal_limonite");
+            case "copper_ore", "deepslate_copper_ore" -> firstExistingTfcOre(rock, "normal_native_copper");
+            case "gold_ore", "deepslate_gold_ore" -> firstExistingTfcOre(rock, "normal_native_gold");
+            case "nether_gold_ore" -> firstExistingTfcOre(rock, "normal_native_gold");
+            case "lapis_ore", "deepslate_lapis_ore" -> firstExistingTfcOre(rock, "lapis_lazuli");
+            case "diamond_ore", "deepslate_diamond_ore" -> firstExistingTfcOre(rock, "diamond");
+            case "emerald_ore", "deepslate_emerald_ore" -> firstExistingTfcOre(rock, "emerald");
+            case "redstone_ore", "deepslate_redstone_ore" -> firstExistingTfcOre(rock, "cinnabar");
+            case "nether_quartz_ore" -> firstExistingTfcOre(rock, "quartz");
+            default -> null;
+        };
+    }
+
+    private static @Nullable ResourceLocation mapSandstone(String vanillaPath) {
+        return switch (vanillaPath) {
+            case "sandstone" -> tfcSandstone("raw_sandstone", "yellow");
+            case "sandstone_stairs" -> tfcSandstone("raw_sandstone", "yellow", "_stairs");
+            case "sandstone_slab" -> tfcSandstone("raw_sandstone", "yellow", "_slab");
+            case "sandstone_wall" -> tfcSandstone("raw_sandstone", "yellow", "_wall");
+            case "chiseled_sandstone", "cut_sandstone" -> tfcSandstone("cut_sandstone", "yellow");
+            case "cut_sandstone_slab" -> tfcSandstone("cut_sandstone", "yellow", "_slab");
+            case "smooth_sandstone" -> tfcSandstone("smooth_sandstone", "yellow");
+            case "smooth_sandstone_stairs" -> tfcSandstone("smooth_sandstone", "yellow", "_stairs");
+            case "smooth_sandstone_slab" -> tfcSandstone("smooth_sandstone", "yellow", "_slab");
+
+            case "red_sandstone" -> tfcSandstone("raw_sandstone", "red");
+            case "red_sandstone_stairs" -> tfcSandstone("raw_sandstone", "red", "_stairs");
+            case "red_sandstone_slab" -> tfcSandstone("raw_sandstone", "red", "_slab");
+            case "red_sandstone_wall" -> tfcSandstone("raw_sandstone", "red", "_wall");
+            case "chiseled_red_sandstone", "cut_red_sandstone" -> tfcSandstone("cut_sandstone", "red");
+            case "cut_red_sandstone_slab" -> tfcSandstone("cut_sandstone", "red", "_slab");
+            case "smooth_red_sandstone" -> tfcSandstone("smooth_sandstone", "red");
+            case "smooth_red_sandstone_stairs" -> tfcSandstone("smooth_sandstone", "red", "_stairs");
+            case "smooth_red_sandstone_slab" -> tfcSandstone("smooth_sandstone", "red", "_slab");
             default -> null;
         };
     }
@@ -652,6 +694,10 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
                 return ResourceLocation.fromNamespaceAndPath(NS_TFC, "rooted_dirt/" + soil);
             case "farmland":
                 return ResourceLocation.fromNamespaceAndPath(NS_TFC, "farmland/" + soil);
+            case "sand":
+                return ResourceLocation.fromNamespaceAndPath(NS_TFC, "sand/yellow");
+            case "red_sand":
+                return ResourceLocation.fromNamespaceAndPath(NS_TFC, "sand/red");
             default:
                 return null;
         }
@@ -834,6 +880,17 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
             return ResourceLocation.fromNamespaceAndPath(NS_TFC, "sea_pickle");
         }
 
+        switch (vanillaPath) {
+            case "vine":
+                return ResourceLocation.fromNamespaceAndPath(NS_TFC, "plant/ivy");
+            case "cactus":
+                return ResourceLocation.fromNamespaceAndPath(NS_TFC, "plant/silken_pincushion_cactus");
+            case "dead_bush":
+                return ResourceLocation.fromNamespaceAndPath(NS_TFC, "plant/dead_bush");
+            default:
+                break;
+        }
+
         // Flower pots.
         if (vanillaPath.startsWith("potted_")) {
             String plant = vanillaPath.substring("potted_".length());
@@ -915,6 +972,29 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
             }
         }
         return null;
+    }
+
+    private static @Nullable ResourceLocation firstExistingTfcOre(String rock, String... oreNames) {
+        for (String oreName : oreNames) {
+            ResourceLocation id = ResourceLocation.fromNamespaceAndPath(NS_TFC, "ore/" + oreName + "/" + rock);
+            if (BuiltInRegistries.BLOCK.containsKey(id)) {
+                return id;
+            }
+            ResourceLocation fallback =
+                    ResourceLocation.fromNamespaceAndPath(NS_TFC, "ore/" + oreName + "/" + DEFAULT_ROCK_OVERWORLD);
+            if (BuiltInRegistries.BLOCK.containsKey(fallback)) {
+                return fallback;
+            }
+        }
+        return null;
+    }
+
+    private static ResourceLocation tfcSandstone(String variant, String color) {
+        return tfcSandstone(variant, color, "");
+    }
+
+    private static ResourceLocation tfcSandstone(String variant, String color, String suffix) {
+        return ResourceLocation.fromNamespaceAndPath(NS_TFC, variant + "/" + color + suffix);
     }
 
     private static @Nullable CompoundTag replaceVanillaOreInStructureNbt(@Nullable CompoundTag nbt) {
