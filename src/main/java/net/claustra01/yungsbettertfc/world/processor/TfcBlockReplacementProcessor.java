@@ -402,7 +402,7 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
 
     private static @Nullable ResourceLocation mapFirepit(String vanillaPath) {
         return switch (vanillaPath) {
-            case "furnace", "campfire", "soul_campfire" -> TFC_FIREPIT;
+            case "furnace" -> TFC_FIREPIT;
             default -> null;
         };
     }
