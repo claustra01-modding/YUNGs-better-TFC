@@ -31,7 +31,7 @@
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:iron_pickaxe",
+          "name": "tfc:metal/pickaxe/wrought_iron",
           "weight": 5
         },
         {
@@ -45,7 +45,7 @@
       "bonus_rolls": 0.0,
       "entries": [
         {
-          "type": "minecraft:item",
+          "type": "minecraft:loot_table",
           "functions": [
             {
               "add": false,
@@ -57,11 +57,11 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "minecraft:iron_ingot",
+          "value": "yungsbettertfc:shared/metals_overworld",
           "weight": 10
         },
         {
-          "type": "minecraft:item",
+          "type": "minecraft:loot_table",
           "functions": [
             {
               "add": false,
@@ -73,7 +73,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "minecraft:gold_ingot",
+          "value": "yungsbettertfc:shared/metals_overworld",
           "weight": 5
         },
         {
@@ -93,7 +93,7 @@
           "weight": 5
         },
         {
-          "type": "minecraft:item",
+          "type": "minecraft:loot_table",
           "functions": [
             {
               "add": false,
@@ -105,11 +105,11 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "minecraft:lapis_lazuli",
+          "value": "yungsbettertfc:shared/gems",
           "weight": 5
         },
         {
-          "type": "minecraft:item",
+          "type": "minecraft:loot_table",
           "functions": [
             {
               "add": false,
@@ -121,11 +121,11 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "minecraft:diamond",
+          "value": "yungsbettertfc:shared/gems",
           "weight": 3
         },
         {
-          "type": "minecraft:item",
+          "type": "minecraft:loot_table",
           "functions": [
             {
               "add": false,
@@ -137,11 +137,11 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "minecraft:coal",
+          "value": "yungsbettertfc:shared/coal_like",
           "weight": 10
         },
         {
-          "type": "minecraft:item",
+          "type": "minecraft:loot_table",
           "functions": [
             {
               "add": false,
@@ -153,11 +153,11 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "minecraft:bread",
+          "value": "yungsbettertfc:shared/produce",
           "weight": 15
         },
         {
-          "type": "minecraft:item",
+          "type": "minecraft:loot_table",
           "functions": [
             {
               "add": false,
@@ -169,11 +169,11 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "minecraft:glow_berries",
+          "value": "yungsbettertfc:shared/produce",
           "weight": 15
         },
         {
-          "type": "minecraft:item",
+          "type": "minecraft:loot_table",
           "functions": [
             {
               "add": false,
@@ -185,11 +185,11 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "minecraft:melon_seeds",
+          "value": "yungsbettertfc:shared/seeds",
           "weight": 10
         },
         {
-          "type": "minecraft:item",
+          "type": "minecraft:loot_table",
           "functions": [
             {
               "add": false,
@@ -201,11 +201,11 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "minecraft:pumpkin_seeds",
+          "value": "yungsbettertfc:shared/seeds",
           "weight": 10
         },
         {
-          "type": "minecraft:item",
+          "type": "minecraft:loot_table",
           "functions": [
             {
               "add": false,
@@ -217,7 +217,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "minecraft:beetroot_seeds",
+          "value": "yungsbettertfc:shared/seeds",
           "weight": 10
         }
       ],
