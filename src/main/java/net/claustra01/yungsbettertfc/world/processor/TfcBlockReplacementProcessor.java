@@ -83,6 +83,8 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
         UTILITY_ONLY
     }
 
+    private record ReplacementResult(BlockState state, boolean changed, boolean clearNbt) {}
+
     private TfcBlockReplacementProcessor() {}
 
     @Override
@@ -99,9 +101,39 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
             StructureTemplate.StructureBlockInfo processedBlockInfo,
             StructurePlaceSettings settings,
             @Nullable StructureTemplate template) {
+        CompoundTag outNbt = replaceVanillaOreInStructureNbt(processedBlockInfo.nbt());
+        @Nullable ResourceLocation templateId = null;
+        if (template instanceof StructureTemplateIdAccess access) {
+            templateId = access.yungsbettertfc$getTemplateId();
+        }
+        ReplacementResult replacement = replaceBlockState(
+                level,
+                offset,
+                processedBlockInfo.state(),
+                templateId != null ? templateId.toString() : "template");
+
+        if (!replacement.changed()) {
+            if (outNbt != processedBlockInfo.nbt()) {
+                return new StructureTemplate.StructureBlockInfo(
+                        processedBlockInfo.pos(), processedBlockInfo.state(), outNbt);
+            }
+            return processedBlockInfo;
+        }
+
+        if (replacement.clearNbt()) {
+            outNbt = null;
+        }
+        return new StructureTemplate.StructureBlockInfo(processedBlockInfo.pos(), replacement.state(), outNbt);
+    }
+
+    public static BlockState replaceGeneratedBlock(LevelReader level, BlockPos pos, BlockState state, String source) {
+        return replaceBlockState(level, pos, state, source).state();
+    }
+
+    private static ReplacementResult replaceBlockState(LevelReader level, BlockPos contextPos, BlockState in, String source) {
         // In worldgen, the "level" is usually a WorldGenLevel/WorldGenRegion, not a ServerLevel.
         // We resolve the underlying ServerLevel for dimension-specific defaults.
-        var serverLevel = resolveServerLevel(level);
+        ServerLevel serverLevel = resolveServerLevel(level);
         ReplacementScope scope = ReplacementScope.FULL;
         if (serverLevel != null && serverLevel.dimension() != Level.OVERWORLD) {
             scope = ReplacementScope.UTILITY_ONLY;
@@ -112,17 +144,14 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
                         && BuiltInRegistries.BLOCK.containsKey(
                                 ResourceLocation.fromNamespaceAndPath(NS_BENEATH, "wood/planks/crimson"));
 
-        BlockState in = processedBlockInfo.state();
-        Block inBlock = in.getBlock();
-
         // Skip air quickly.
         if (in.isAir()) {
-            return processedBlockInfo;
+            return new ReplacementResult(in, false, false);
         }
 
-        ResourceLocation inId = BuiltInRegistries.BLOCK.getKey(inBlock);
+        ResourceLocation inId = BuiltInRegistries.BLOCK.getKey(in.getBlock());
         if (!NS_MINECRAFT.equals(inId.getNamespace())) {
-            return processedBlockInfo;
+            return new ReplacementResult(in, false, false);
         }
 
         String path = inId.getPath();
@@ -132,19 +161,16 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
             path = path.substring("infested_".length());
         }
 
-        CompoundTag outNbt = replaceVanillaOreInStructureNbt(processedBlockInfo.nbt());
-
         // Tall seagrass is a double-block plant. Replacing it with a single-block aquatic plant works best if the upper
         // half becomes water (otherwise the "upper" plant block tends to pop off).
         if ("tall_seagrass".equals(path)
                 && in.hasProperty(BlockStateProperties.DOUBLE_BLOCK_HALF)
                 && in.getValue(BlockStateProperties.DOUBLE_BLOCK_HALF) == DoubleBlockHalf.UPPER) {
-            return new StructureTemplate.StructureBlockInfo(
-                    processedBlockInfo.pos(), Blocks.WATER.defaultBlockState(), processedBlockInfo.nbt());
+            return new ReplacementResult(Blocks.WATER.defaultBlockState(), true, false);
         }
 
-        // Cache context once per template placement origin (offset).
-        long cacheKey = offset.asLong();
+        // Cache context once per structure/template placement origin, or per generated position for non-template pieces.
+        long cacheKey = contextPos.asLong();
         String rock = DEFAULT_ROCK_OVERWORLD;
         String soil = DEFAULT_SOIL;
         if (scope == ReplacementScope.FULL) {
@@ -156,7 +182,7 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
             }
             String cachedRock = rockCache.get(cacheKey);
             if (cachedRock == null) {
-                cachedRock = findRockNameBelow(level, offset);
+                cachedRock = findRockNameBelow(level, contextPos);
                 if (cachedRock == null) {
                     cachedRock = defaultRock;
                 }
@@ -170,7 +196,7 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
             }
             String cachedSoil = soilCache.get(cacheKey);
             if (cachedSoil == null) {
-                cachedSoil = findSoilNameBelow(level, offset);
+                cachedSoil = findSoilNameBelow(level, contextPos);
                 if (cachedSoil == null) {
                     cachedSoil = DEFAULT_SOIL;
                 }
@@ -197,28 +223,21 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
         @Nullable ResourceLocation outId =
                 mapVanillaToTfc(path, rock, soil, woodHint, infested, scope, beneathNether);
         if (outId == null) {
-            if (outNbt != processedBlockInfo.nbt()) {
-                return new StructureTemplate.StructureBlockInfo(processedBlockInfo.pos(), in, outNbt);
-            }
-            return processedBlockInfo;
+            return new ReplacementResult(in, false, false);
         }
 
         Block outBlock = BuiltInRegistries.BLOCK.getOptional(outId).orElse(null);
         if (outBlock == null || outBlock == Blocks.AIR) {
-            return processedBlockInfo;
+            return new ReplacementResult(in, false, false);
         }
 
         BlockState out = copyPropertiesByName(in, outBlock.defaultBlockState());
         if (LOGGED_FIRST_REPLACEMENT.compareAndSet(false, true)) {
-            @Nullable ResourceLocation templateId = null;
-            if (template instanceof StructureTemplateIdAccess access) {
-                templateId = access.yungsbettertfc$getTemplateId();
-            }
             LOGGER.info(
-                    "Activated TFC block replacement processor. Example: {} -> {} (template {}, dim {}, rock {}, soil {}, wood {}).",
+                    "Activated TFC block replacement processor. Example: {} -> {} (source {}, dim {}, rock {}, soil {}, wood {}).",
                     inId,
                     outId,
-                    templateId,
+                    source,
                     serverLevel != null ? serverLevel.dimension().location() : null,
                     rock,
                     soil,
@@ -227,11 +246,10 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
 
         if (TFC_FIREPIT.equals(outId)) {
             out = applyFirepitAxisFromFacing(in, out);
-            // Furnace/campfire block entity tags don't make sense on a firepit and can cause odd behavior.
-            outNbt = null;
+            return new ReplacementResult(out, true, true);
         }
 
-        return new StructureTemplate.StructureBlockInfo(processedBlockInfo.pos(), out, outNbt);
+        return new ReplacementResult(out, true, false);
     }
 
     private static BlockState applyFirepitAxisFromFacing(BlockState from, BlockState firepit) {

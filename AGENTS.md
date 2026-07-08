@@ -375,8 +375,29 @@ TFC Overworld へ生成させる variant は以下の 6 種だけにする。
   に `#yungsbettertfc:tfc_mineshaft_spruce_snowy_biomes` を追加する。
 
 Better Mineshafts は template pool / NBT ではなく Java の `StructurePiece` 実装で
-主なブロックを生成する。この段階ではワールド生成 biome tag だけ対応し、
-ブロック置換、loot 置換、`structure_set` 上書きは行わない。
+主なブロックを生成するため、`StructureTemplateMixin` の processor 注入だけでは
+ブロック置換が効かない。Better Mineshafts の各 piece は木材、石材、作業台などの
+大半を vanilla `StructurePiece#placeBlock` 経由で配置するため、このメソッドの
+`WorldGenLevel#setBlock` 呼び出しを mixin で redirect する。実行時の piece class 名が
+`com.yungnickyoung.minecraft.bettermineshafts.world.generator.pieces.` で始まる場合だけ、
+既存の `TfcBlockReplacementProcessor` と同じブロック置換を適用する。
+
+Better Mineshafts の dungeon chest は vanilla `StructurePiece#createChest` 経由で
+配置されるため、この chest 設置も同じ条件で redirect する。TFC chest block entity は
+vanilla `ChestBlockEntity` を継承するため、依存元の loot table 設定は維持される。
+
+依存元 `BetterMineshaftPiece` では、空洞/溶岩上の脚生成だけ
+`StructurePiece#placeBlock` を経由せず、`generateLegOrChain`,
+`generatePillarDownOrChainUp`, `fillColumnBetween` から直接 `WorldGenLevel#setBlock`
+する。この直接配置も `@Pseudo` mixin で redirect し、支柱 log/planks と chain に
+同じ置換を適用する。
+
+Better Mineshafts 用に新しい置換マップは追加しない。置換されるのは、既存の
+`StructureTemplateMixin` 経由で置換されている vanilla block / block entity 相当の
+範囲だけとする。`barrel`, `rail`, `lantern`, `bed`, `anvil`, `smithing_table`,
+`blast_furnace` など、既存マップにないブロックはこの段階では変換しない。
+
+loot 置換と `structure_set` 上書きは行わない。
 
 ### Better Fortresses
 
