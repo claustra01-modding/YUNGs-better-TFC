@@ -275,7 +275,9 @@ anvil 系置換は意図的に無効化されている。
 - `tall_seagrass` upper half -> `minecraft:water`
 - `sea_pickle` -> `tfc:sea_pickle`
 - `vine` -> `tfc:plant/ivy`
-- `cactus` -> `tfc:plant/silken_pincushion_cactus`
+- `cactus` の最下段 -> `tfc:plant/silken_pincushion_cactus`
+- `cactus` のうち、下方向に空気だけを挟んで `minecraft:cactus` または
+  `tfc:plant/silken_pincushion_cactus` がある上段 -> `minecraft:air`
 - `dead_bush` -> `tfc:plant/dead_bush`
 - `potted_<plant>` -> `tfc:plant/potted/<plant>`。ただし TFC block が存在する場合だけ。
 - `candle` -> `tfc:candle`

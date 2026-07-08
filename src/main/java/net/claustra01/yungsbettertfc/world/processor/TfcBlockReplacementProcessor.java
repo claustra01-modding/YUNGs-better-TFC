@@ -58,6 +58,8 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
     private static final String DEFAULT_WOOD = "oak";
 
     private static final ResourceLocation TFC_FIREPIT = ResourceLocation.fromNamespaceAndPath(NS_TFC, "firepit");
+    private static final ResourceLocation TFC_SILKEN_PINCUSHION_CACTUS =
+            ResourceLocation.fromNamespaceAndPath(NS_TFC, "plant/silken_pincushion_cactus");
 
     private static final Set<String> VANILLA_WOOD_TYPES =
             Set.of(
@@ -109,6 +111,7 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
         ReplacementResult replacement = replaceBlockState(
                 level,
                 offset,
+                processedBlockInfo.pos(),
                 processedBlockInfo.state(),
                 templateId != null ? templateId.toString() : "template");
 
@@ -127,10 +130,11 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
     }
 
     public static BlockState replaceGeneratedBlock(LevelReader level, BlockPos pos, BlockState state, String source) {
-        return replaceBlockState(level, pos, state, source).state();
+        return replaceBlockState(level, pos, pos, state, source).state();
     }
 
-    private static ReplacementResult replaceBlockState(LevelReader level, BlockPos contextPos, BlockState in, String source) {
+    private static ReplacementResult replaceBlockState(
+            LevelReader level, BlockPos cachePos, BlockPos blockPos, BlockState in, String source) {
         // In worldgen, the "level" is usually a WorldGenLevel/WorldGenRegion, not a ServerLevel.
         // We resolve the underlying ServerLevel for dimension-specific defaults.
         ServerLevel serverLevel = resolveServerLevel(level);
@@ -169,8 +173,12 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
             return new ReplacementResult(Blocks.WATER.defaultBlockState(), true, false);
         }
 
+        if ("cactus".equals(path) && hasCactusBaseBelow(level, blockPos)) {
+            return new ReplacementResult(Blocks.AIR.defaultBlockState(), true, false);
+        }
+
         // Cache context once per structure/template placement origin, or per generated position for non-template pieces.
-        long cacheKey = contextPos.asLong();
+        long cacheKey = cachePos.asLong();
         String rock = DEFAULT_ROCK_OVERWORLD;
         String soil = DEFAULT_SOIL;
         if (scope == ReplacementScope.FULL) {
@@ -182,7 +190,7 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
             }
             String cachedRock = rockCache.get(cacheKey);
             if (cachedRock == null) {
-                cachedRock = findRockNameBelow(level, contextPos);
+                cachedRock = findRockNameBelow(level, cachePos);
                 if (cachedRock == null) {
                     cachedRock = defaultRock;
                 }
@@ -196,7 +204,7 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
             }
             String cachedSoil = soilCache.get(cacheKey);
             if (cachedSoil == null) {
-                cachedSoil = findSoilNameBelow(level, contextPos);
+                cachedSoil = findSoilNameBelow(level, cachePos);
                 if (cachedSoil == null) {
                     cachedSoil = DEFAULT_SOIL;
                 }
@@ -250,6 +258,26 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
         }
 
         return new ReplacementResult(out, true, false);
+    }
+
+    private static boolean hasCactusBaseBelow(LevelReader level, BlockPos pos) {
+        for (int dy = 1; dy <= 6; dy++) {
+            BlockState below = level.getBlockState(pos.below(dy));
+            if (isCactusLike(below)) {
+                return true;
+            }
+            if (!below.isAir()) {
+                return false;
+            }
+        }
+        return false;
+    }
+
+    private static boolean isCactusLike(BlockState state) {
+        if (state.is(Blocks.CACTUS)) {
+            return true;
+        }
+        return TFC_SILKEN_PINCUSHION_CACTUS.equals(BuiltInRegistries.BLOCK.getKey(state.getBlock()));
     }
 
     private static BlockState applyFirepitAxisFromFacing(BlockState from, BlockState firepit) {
