@@ -78,8 +78,9 @@ data を基準に比較する。
   - End rock: `granite`
   - soil: `mollisol`
   - wood: `oak`
-- 全置換 scope では、配置 origin から下方向へ最大 64 block 調べ、TFC rock/soil を検出する。
-- rock、soil、wood hint はテンプレート配置 origin ごとに cache する。
+- 全置換 scope では、cache origin から下方向へ最大 64 block 調べ、TFC rock/soil を検出する。
+- rock、soil、wood hint はテンプレートでは配置 origin ごと、Better Mineshafts の
+  `StructurePiece` 生成では piece bounding box の最小座標ごとに cache する。
 - 置換先 block が同名 property と同じ値を持てる場合、置換元 block state の property を引き継ぐ。
 - block entity NBT の `final_state` にバニラ ore block id がある場合、そこも TFC ore に置換する。
 - `furnace` を `tfc:firepit` に置換する場合:
@@ -554,8 +555,6 @@ overworld dungeon 互換と同じ方針が明確な item だけを shared loot t
 - `#tfc:is_glaciated`
 - `tfc:glacially_carved_mountains`
 - `tfc:glacially_carved_oceanic_mountains`
-- `tfc:glacially_carved_volcanic_mountains`
-- `tfc:glacially_carved_volcanic_oceanic_mountains`
 - `tfc:tuyas`
 - `tfc:meltwater_lake`
 

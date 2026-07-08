@@ -85,7 +85,7 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
         UTILITY_ONLY
     }
 
-    private record ReplacementResult(BlockState state, boolean changed, boolean clearNbt) {}
+    private record ReplacementResult(BlockState state, boolean changed, boolean clearNbt, String rock) {}
 
     private TfcBlockReplacementProcessor() {}
 
@@ -103,7 +103,6 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
             StructureTemplate.StructureBlockInfo processedBlockInfo,
             StructurePlaceSettings settings,
             @Nullable StructureTemplate template) {
-        CompoundTag outNbt = replaceVanillaOreInStructureNbt(processedBlockInfo.nbt());
         @Nullable ResourceLocation templateId = null;
         if (template instanceof StructureTemplateIdAccess access) {
             templateId = access.yungsbettertfc$getTemplateId();
@@ -114,6 +113,7 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
                 processedBlockInfo.pos(),
                 processedBlockInfo.state(),
                 templateId != null ? templateId.toString() : "template");
+        CompoundTag outNbt = replaceVanillaOreInStructureNbt(processedBlockInfo.nbt(), replacement.rock());
 
         if (!replacement.changed()) {
             if (outNbt != processedBlockInfo.nbt()) {
@@ -130,7 +130,16 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
     }
 
     public static BlockState replaceGeneratedBlock(LevelReader level, BlockPos pos, BlockState state, String source) {
-        return replaceBlockState(level, pos, pos, state, source).state();
+        return replaceGeneratedBlock(level, generatedFallbackCachePos(pos), pos, state, source);
+    }
+
+    public static BlockState replaceGeneratedBlock(
+            LevelReader level, BlockPos cachePos, BlockPos blockPos, BlockState state, String source) {
+        return replaceBlockState(level, cachePos, blockPos, state, source).state();
+    }
+
+    private static BlockPos generatedFallbackCachePos(BlockPos blockPos) {
+        return new BlockPos(blockPos.getX() & ~15, blockPos.getY() & ~15, blockPos.getZ() & ~15);
     }
 
     private static ReplacementResult replaceBlockState(
@@ -142,6 +151,7 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
         if (serverLevel != null && serverLevel.dimension() != Level.OVERWORLD) {
             scope = ReplacementScope.UTILITY_ONLY;
         }
+        String defaultRock = defaultRockFor(serverLevel);
         boolean beneathNether =
                 serverLevel != null
                         && serverLevel.dimension() == Level.NETHER
@@ -150,12 +160,12 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
 
         // Skip air quickly.
         if (in.isAir()) {
-            return new ReplacementResult(in, false, false);
+            return new ReplacementResult(in, false, false, defaultRock);
         }
 
         ResourceLocation inId = BuiltInRegistries.BLOCK.getKey(in.getBlock());
         if (!NS_MINECRAFT.equals(inId.getNamespace())) {
-            return new ReplacementResult(in, false, false);
+            return new ReplacementResult(in, false, false, defaultRock);
         }
 
         String path = inId.getPath();
@@ -170,20 +180,18 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
         if ("tall_seagrass".equals(path)
                 && in.hasProperty(BlockStateProperties.DOUBLE_BLOCK_HALF)
                 && in.getValue(BlockStateProperties.DOUBLE_BLOCK_HALF) == DoubleBlockHalf.UPPER) {
-            return new ReplacementResult(Blocks.WATER.defaultBlockState(), true, false);
+            return new ReplacementResult(Blocks.WATER.defaultBlockState(), true, false, defaultRock);
         }
 
         if ("cactus".equals(path) && hasCactusBaseBelow(level, blockPos)) {
-            return new ReplacementResult(Blocks.AIR.defaultBlockState(), true, false);
+            return new ReplacementResult(Blocks.AIR.defaultBlockState(), true, false, defaultRock);
         }
 
-        // Cache context once per structure/template placement origin, or per generated position for non-template pieces.
+        // Cache context once per structure/template placement origin or generated-piece origin.
         long cacheKey = cachePos.asLong();
-        String rock = DEFAULT_ROCK_OVERWORLD;
+        String rock = defaultRock;
         String soil = DEFAULT_SOIL;
         if (scope == ReplacementScope.FULL) {
-            String defaultRock = defaultRockFor(serverLevel);
-
             Long2ObjectOpenHashMap<String> rockCache = ROCK_CACHE.get();
             if (rockCache.size() > 2048) {
                 rockCache.clear();
@@ -231,12 +239,12 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
         @Nullable ResourceLocation outId =
                 mapVanillaToTfc(path, rock, soil, woodHint, infested, scope, beneathNether);
         if (outId == null) {
-            return new ReplacementResult(in, false, false);
+            return new ReplacementResult(in, false, false, rock);
         }
 
         Block outBlock = BuiltInRegistries.BLOCK.getOptional(outId).orElse(null);
         if (outBlock == null || outBlock == Blocks.AIR) {
-            return new ReplacementResult(in, false, false);
+            return new ReplacementResult(in, false, false, rock);
         }
 
         BlockState out = copyPropertiesByName(in, outBlock.defaultBlockState());
@@ -254,10 +262,10 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
 
         if (TFC_FIREPIT.equals(outId)) {
             out = applyFirepitAxisFromFacing(in, out);
-            return new ReplacementResult(out, true, true);
+            return new ReplacementResult(out, true, true, rock);
         }
 
-        return new ReplacementResult(out, true, false);
+        return new ReplacementResult(out, true, false, rock);
     }
 
     private static boolean hasCactusBaseBelow(LevelReader level, BlockPos pos) {
@@ -551,10 +559,6 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
             default:
                 return null;
         }
-    }
-
-    private static @Nullable ResourceLocation mapOre(String vanillaPath) {
-        return mapOre(vanillaPath, DEFAULT_ROCK_OVERWORLD);
     }
 
     private static @Nullable ResourceLocation mapOre(String vanillaPath, String rock) {
@@ -1025,7 +1029,7 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
         return ResourceLocation.fromNamespaceAndPath(NS_TFC, variant + "/" + color + suffix);
     }
 
-    private static @Nullable CompoundTag replaceVanillaOreInStructureNbt(@Nullable CompoundTag nbt) {
+    private static @Nullable CompoundTag replaceVanillaOreInStructureNbt(@Nullable CompoundTag nbt, String rock) {
         if (nbt == null || !nbt.contains("final_state", Tag.TAG_STRING)) {
             return nbt;
         }
@@ -1048,7 +1052,7 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
             return nbt;
         }
 
-        @Nullable ResourceLocation replacement = mapOre(blockId.getPath());
+        @Nullable ResourceLocation replacement = mapOre(blockId.getPath(), rock);
         if (replacement == null) {
             return nbt;
         }

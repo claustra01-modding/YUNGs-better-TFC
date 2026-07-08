@@ -5,14 +5,19 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.StructurePiece;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(StructurePiece.class)
 public abstract class BetterMineshaftStructurePieceMixin {
+    @Shadow
+    public abstract BoundingBox getBoundingBox();
+
     @Unique
     private static final String BETTER_MINESHAFT_PIECE_PACKAGE =
             "com.yungnickyoung.minecraft.bettermineshafts.world.generator.pieces.";
@@ -59,6 +64,8 @@ public abstract class BetterMineshaftStructurePieceMixin {
         if (!source.startsWith(BETTER_MINESHAFT_PIECE_PACKAGE)) {
             return state;
         }
-        return TfcBlockReplacementProcessor.replaceGeneratedBlock(level, pos, state, source);
+        BoundingBox box = this.getBoundingBox();
+        BlockPos cachePos = new BlockPos(box.minX(), box.minY(), box.minZ());
+        return TfcBlockReplacementProcessor.replaceGeneratedBlock(level, cachePos, pos, state, source);
     }
 }
