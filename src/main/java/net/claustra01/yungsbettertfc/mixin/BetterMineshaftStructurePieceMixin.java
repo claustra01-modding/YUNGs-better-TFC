@@ -22,6 +22,9 @@ public abstract class BetterMineshaftStructurePieceMixin {
     private static final String BETTER_MINESHAFT_PIECE_PACKAGE =
             "com.yungnickyoung.minecraft.bettermineshafts.world.generator.pieces.";
     @Unique
+    private static final String BETTER_DUNGEONS_SPIDER_PIECE_PACKAGE =
+            "com.yungnickyoung.minecraft.betterdungeons.world.structure.spider_dungeon.piece.";
+    @Unique
     private static final String PLACE_BLOCK_METHOD =
             "placeBlock(Lnet/minecraft/world/level/WorldGenLevel;"
                     + "Lnet/minecraft/world/level/block/state/BlockState;"
@@ -61,7 +64,8 @@ public abstract class BetterMineshaftStructurePieceMixin {
     private BlockState yungsbettertfc$replaceBetterMineshaftState(
             ServerLevelAccessor level, BlockPos pos, BlockState state) {
         String source = ((Object) this).getClass().getName();
-        if (!source.startsWith(BETTER_MINESHAFT_PIECE_PACKAGE)) {
+        if (!source.startsWith(BETTER_MINESHAFT_PIECE_PACKAGE)
+                && !source.startsWith(BETTER_DUNGEONS_SPIDER_PIECE_PACKAGE)) {
             return state;
         }
         BoundingBox box = this.getBoundingBox();
