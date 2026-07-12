@@ -61,6 +61,8 @@ data を基準に比較する。
   - `betteroceanmonuments`
   - `betterfortresses`
   - `beneath`
+- バニラ名前空間は全体を対象にせず、`minecraft:end_city/*` のテンプレートだけを
+  追加対象にする。
 - プロセッサは構造物側の既存プロセッサの後に実行されるよう、末尾へ追加する。
 - 同じ `StructurePlaceSettings` に同一プロセッサ instance を重複追加しない。
 
@@ -695,6 +697,12 @@ overworld dungeon 互換と同じ方針が明確な item だけを shared loot t
 nether wart、trim template など。
 
 ### End City 戦利品差分
+
+End City の `minecraft:end_city/*` テンプレートには共通ブロック置換を適用する。
+End dimension の utility-only scope により、テンプレート内の `minecraft:chest` は
+既定 wood の `tfc:wood/chest/oak` へ置換する。`EndCityPieces#handleDataMarker` は
+配置後の chest block entity に `minecraft:chests/end_city_treasure` を設定するため、
+TFC chest でもこの節の戦利品テーブルを維持する。
 
 #### `data/minecraft/loot_table/chests/end_city_treasure.json`
 

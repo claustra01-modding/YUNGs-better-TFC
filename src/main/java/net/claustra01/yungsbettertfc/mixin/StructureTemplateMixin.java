@@ -27,6 +27,8 @@ public abstract class StructureTemplateMixin implements StructureTemplateIdAcces
                     "betterfortresses",
                     "beneath");
 
+    @Unique private static final String VANILLA_END_CITY_TEMPLATE_PREFIX = "end_city/";
+
     @Unique @Nullable private ResourceLocation yungsbettertfc$templateId;
 
     @Override
@@ -51,7 +53,7 @@ public abstract class StructureTemplateMixin implements StructureTemplateIdAcces
             int flags,
             CallbackInfoReturnable<Boolean> cir) {
         ResourceLocation id = this.yungsbettertfc$templateId;
-        if (id == null || !YBTF_STRUCTURE_NAMESPACES.contains(id.getNamespace())) {
+        if (id == null || !yungsbettertfc$isTargetTemplate(id)) {
             return;
         }
 
@@ -59,5 +61,11 @@ public abstract class StructureTemplateMixin implements StructureTemplateIdAcces
         if (!settings.getProcessors().contains(TfcBlockReplacementProcessor.INSTANCE)) {
             settings.addProcessor(TfcBlockReplacementProcessor.INSTANCE);
         }
+    }
+
+    @Unique
+    private static boolean yungsbettertfc$isTargetTemplate(ResourceLocation id) {
+        return YBTF_STRUCTURE_NAMESPACES.contains(id.getNamespace())
+                || ("minecraft".equals(id.getNamespace()) && id.getPath().startsWith(VANILLA_END_CITY_TEMPLATE_PREFIX));
     }
 }
