@@ -242,6 +242,10 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
             return new ReplacementResult(in, false, false, rock);
         }
 
+        if (level.getBlockState(blockPos.below()).isAir() && isUnstableFullRock(outId, rock)) {
+            outId = tfcRock("rock/hardened/", rock);
+        }
+
         Block outBlock = BuiltInRegistries.BLOCK.getOptional(outId).orElse(null);
         if (outBlock == null || outBlock == Blocks.AIR) {
             return new ReplacementResult(in, false, false, rock);
@@ -266,6 +270,12 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
         }
 
         return new ReplacementResult(out, true, false, rock);
+    }
+
+    private static boolean isUnstableFullRock(ResourceLocation blockId, String rock) {
+        return blockId.equals(tfcRock("rock/raw/", rock))
+                || blockId.equals(tfcRock("rock/cobble/", rock))
+                || blockId.equals(tfcRock("rock/mossy_cobble/", rock));
     }
 
     private static boolean hasCactusBaseBelow(LevelReader level, BlockPos pos) {
