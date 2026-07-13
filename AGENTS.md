@@ -84,6 +84,10 @@ data を基準に比較する。
 - rock、soil、wood hint はテンプレートでは配置 origin ごと、Better Mineshafts の
   `StructurePiece` 生成では piece bounding box の最小座標ごとに cache する。
 - 置換先 block が同名 property と同じ値を持てる場合、置換元 block state の property を引き継ぐ。
+- フルブロックの `tfc:rock/raw/<rock>`, `tfc:rock/cobble/<rock>`,
+  `tfc:rock/mossy_cobble/<rock>` は、配置座標の真下が air の場合だけ
+  `tfc:rock/hardened/<rock>` に置換する。全対象構造物のテンプレート配置と
+  Java `StructurePiece` 直接配置の両方へ適用する。stairs、slab、wall は対象外とする。
 - block entity NBT の `final_state` にバニラ ore block id がある場合、そこも TFC ore に置換する。
 - `furnace` を `tfc:firepit` に置換する場合:
   - furnace/campfire 由来の block entity NBT は破棄する。
