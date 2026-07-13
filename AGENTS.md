@@ -708,8 +708,8 @@ TFC chest でもこの節の戦利品テーブルを維持する。
 
 - 元の pool 1 の rolls `2～6`、全 entry の weight、set_count の個数範囲を維持する。
 - 元の pool 2 と `spire_armor_trim_smithing_template` の出現率 `1/15` を維持する。
-- TFC には enchantment がないため、置換後の装備には
-  `minecraft:enchant_with_levels` を適用しない。
+- 置換後の装備には、元 entry と同じ `minecraft:enchant_with_levels` を適用する。
+  level は一様分布 `20～39`、options は `#minecraft:on_random_loot` とする。
 - 同じ shared table に置換される同条件 entry は weight を合算してよい。
   装備14 entry は各 weight 3 なので、`equipment_end_city` 1 entry の weight 42 とする。
 - 削除:

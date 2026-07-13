@@ -77,7 +77,18 @@
         {
           "type": "minecraft:loot_table",
           "value": "yungsbettertfc:shared/equipment_end_city",
-          "weight": 42
+          "weight": 42,
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "min": 20.0,
+                "max": 39.0
+              },
+              "options": "#minecraft:on_random_loot"
+            }
+          ]
         }
       ],
       "rolls": { "type": "minecraft:uniform", "min": 2.0, "max": 6.0 }
