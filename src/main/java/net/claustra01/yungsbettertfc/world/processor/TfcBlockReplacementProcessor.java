@@ -338,7 +338,7 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
             return processedEntityInfo;
         }
 
-        String metal = equipmentMetalForTemplate(template);
+        String metal = "wrought_iron";
         boolean changed = false;
         CompoundTag out = nbt.copy();
         switch (entityId.getPath()) {
@@ -358,20 +358,6 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
             return processedEntityInfo;
         }
         return new StructureEntityInfo(processedEntityInfo.pos, processedEntityInfo.blockPos, out);
-    }
-
-    private static String equipmentMetalForTemplate(StructureTemplate template) {
-        @Nullable ResourceLocation templateId = null;
-        if (template instanceof StructureTemplateIdAccess access) {
-            templateId = access.yungsbettertfc$getTemplateId();
-        }
-
-        // Better Strongholds: treat as endgame structure and upgrade displayed gear.
-        if (templateId != null && "betterstrongholds".equals(templateId.getNamespace())) {
-            return "black_steel";
-        }
-
-        return "wrought_iron";
     }
 
     private static @Nullable net.minecraft.server.level.ServerLevel resolveServerLevel(LevelReader level) {
