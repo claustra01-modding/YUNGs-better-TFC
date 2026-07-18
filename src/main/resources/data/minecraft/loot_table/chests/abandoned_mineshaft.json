@@ -307,7 +307,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "minecraft:torch",
+          "name": "tfc:torch",
           "weight": 15
         }
       ],

@@ -6,7 +6,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:coal"
+          "name": "tfc:bituminous_coal"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "tfc:lignite"
         },
         {
           "type": "minecraft:item",
@@ -20,4 +24,3 @@
     }
   ]
 }
-
