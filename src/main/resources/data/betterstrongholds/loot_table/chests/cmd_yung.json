@@ -9,7 +9,7 @@
       },
       "entries": [
         {
-          "type": "minecraft:loot_table",
+          "type": "minecraft:item",
           "weight": 1,
           "functions": [
             {
@@ -23,7 +23,7 @@
               "target": "item_name"
             }
           ],
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          "name": "tfc:metal/sword/wrought_iron"
         }
       ]
     }

@@ -10,7 +10,23 @@
       "bonus_rolls": 0.0,
       "entries": [
         {
+          "weight": 50,
           "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/small_ores/iron",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 2.0,
+                "max": 4.0
+              },
+              "add": false
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
           "weight": 50,
           "functions": [
             {
@@ -23,27 +39,12 @@
               "add": false
             }
           ],
-          "value": "yungsbettertfc:shared/metals_nether_fortress"
+          "name": "tfc:ore/small_native_gold"
         },
         {
-          "type": "minecraft:loot_table",
-          "weight": 50,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "type": "minecraft:uniform",
-                "min": 2.0,
-                "max": 4.0
-              },
-              "add": false
-            }
-          ],
-          "value": "yungsbettertfc:shared/metals_nether_fortress"
-        },
-        {
-          "type": "minecraft:loot_table",
           "weight": 25,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/ingots/dangerous",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -54,12 +55,12 @@
               },
               "add": false
             }
-          ],
-          "value": "yungsbettertfc:shared/metals_nether_fortress"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 50,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/ingots/dangerous",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -70,8 +71,7 @@
               },
               "add": false
             }
-          ],
-          "value": "yungsbettertfc:shared/metals_nether_fortress"
+          ]
         },
         {
           "type": "minecraft:item",
@@ -106,8 +106,9 @@
           "name": "minecraft:string"
         },
         {
-          "type": "minecraft:item",
           "weight": 50,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/utility",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -118,8 +119,7 @@
               },
               "add": false
             }
-          ],
-          "name": "minecraft:glowstone_dust"
+          ]
         }
       ]
     }

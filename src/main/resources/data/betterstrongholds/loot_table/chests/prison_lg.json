@@ -24,8 +24,9 @@
           "name": "minecraft:iron_bars"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 5,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/coal_like",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -35,8 +36,7 @@
                 "type": "minecraft:uniform"
               }
             }
-          ],
-          "value": "yungsbettertfc:shared/coal_like"
+          ]
         },
         {
           "type": "minecraft:item",
@@ -69,13 +69,13 @@
           "name": "minecraft:chain"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 1,
+          "type": "minecraft:loot_table",
           "value": "yungsbettertfc:shared/gems"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 1,
+          "type": "minecraft:loot_table",
           "value": "yungsbettertfc:shared/gems"
         }
       ]

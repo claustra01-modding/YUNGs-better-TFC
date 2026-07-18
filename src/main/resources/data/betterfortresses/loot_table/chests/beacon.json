@@ -48,62 +48,33 @@
       "bonus_rolls": 0.0,
       "entries": [
         {
-          "type": "minecraft:loot_table",
           "weight": 20,
-          "functions": [
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
-            }
-          ],
-          "value": "yungsbettertfc:shared/ranged_weapon"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/bow"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 10,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/bow",
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
               "options": "#minecraft:on_random_loot",
               "levels": 10.0
-            },
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
             }
-          ],
-          "value": "yungsbettertfc:shared/ranged_weapon"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 5,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/bow",
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
               "options": "#minecraft:on_random_loot",
               "levels": 20.0
-            },
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
             }
-          ],
-          "value": "yungsbettertfc:shared/ranged_weapon"
+          ]
         }
       ]
     }

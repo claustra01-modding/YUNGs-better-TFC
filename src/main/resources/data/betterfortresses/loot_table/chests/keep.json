@@ -26,8 +26,9 @@
           "name": "minecraft:flint"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 100,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/coal_like",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -38,8 +39,7 @@
               },
               "add": false
             }
-          ],
-          "value": "yungsbettertfc:shared/coal_like"
+          ]
         },
         {
           "type": "minecraft:item",
@@ -79,607 +79,274 @@
           "name": "minecraft:saddle"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 10,
-          "functions": [
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
-            }
-          ],
-          "value": "yungsbettertfc:shared/horse_armor_nether_fortress"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/horse_armor"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 7,
-          "functions": [
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
-            }
-          ],
-          "value": "yungsbettertfc:shared/horse_armor_nether_fortress"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/horse_armor"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 4,
-          "functions": [
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
-            }
-          ],
-          "value": "yungsbettertfc:shared/horse_armor_nether_fortress"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/horse_armor"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 20,
-          "functions": [
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
-            }
-          ],
-          "value": "yungsbettertfc:shared/equipment_nether_fortress"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/sword"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 20,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/sword",
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
               "options": "#minecraft:on_random_loot",
               "levels": 10.0
-            },
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
             }
-          ],
-          "value": "yungsbettertfc:shared/equipment_nether_fortress"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 10,
-          "functions": [
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
-            }
-          ],
-          "value": "yungsbettertfc:shared/equipment_nether_fortress"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/sword"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 10,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/sword",
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
               "options": "#minecraft:on_random_loot",
               "levels": 20.0
-            },
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
             }
-          ],
-          "value": "yungsbettertfc:shared/equipment_nether_fortress"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 5,
-          "functions": [
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
-            }
-          ],
-          "value": "yungsbettertfc:shared/equipment_nether_fortress"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/sword"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 5,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/sword",
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
               "options": "#minecraft:on_random_loot",
               "levels": 30.0
-            },
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
             }
-          ],
-          "value": "yungsbettertfc:shared/equipment_nether_fortress"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 20,
-          "functions": [
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
-            }
-          ],
-          "value": "yungsbettertfc:shared/equipment_nether_fortress"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/helmet"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 20,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/helmet",
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
               "options": "#minecraft:on_random_loot",
               "levels": 10.0
-            },
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
             }
-          ],
-          "value": "yungsbettertfc:shared/equipment_nether_fortress"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 10,
-          "functions": [
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
-            }
-          ],
-          "value": "yungsbettertfc:shared/equipment_nether_fortress"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/helmet"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 10,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/helmet",
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
               "options": "#minecraft:on_random_loot",
               "levels": 20.0
-            },
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
             }
-          ],
-          "value": "yungsbettertfc:shared/equipment_nether_fortress"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 5,
-          "functions": [
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
-            }
-          ],
-          "value": "yungsbettertfc:shared/equipment_nether_fortress"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/helmet"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 5,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/helmet",
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
               "options": "#minecraft:on_random_loot",
               "levels": 30.0
-            },
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
             }
-          ],
-          "value": "yungsbettertfc:shared/equipment_nether_fortress"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 20,
-          "functions": [
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
-            }
-          ],
-          "value": "yungsbettertfc:shared/equipment_nether_fortress"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/chestplate"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 20,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/chestplate",
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
               "options": "#minecraft:on_random_loot",
               "levels": 10.0
-            },
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
             }
-          ],
-          "value": "yungsbettertfc:shared/equipment_nether_fortress"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 10,
-          "functions": [
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
-            }
-          ],
-          "value": "yungsbettertfc:shared/equipment_nether_fortress"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/chestplate"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 10,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/chestplate",
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
               "options": "#minecraft:on_random_loot",
               "levels": 20.0
-            },
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
             }
-          ],
-          "value": "yungsbettertfc:shared/equipment_nether_fortress"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 5,
-          "functions": [
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
-            }
-          ],
-          "value": "yungsbettertfc:shared/equipment_nether_fortress"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/chestplate"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 5,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/chestplate",
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
               "options": "#minecraft:on_random_loot",
               "levels": 30.0
-            },
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
             }
-          ],
-          "value": "yungsbettertfc:shared/equipment_nether_fortress"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 20,
-          "functions": [
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
-            }
-          ],
-          "value": "yungsbettertfc:shared/equipment_nether_fortress"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/leggings"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 20,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/leggings",
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
               "options": "#minecraft:on_random_loot",
               "levels": 10.0
-            },
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
             }
-          ],
-          "value": "yungsbettertfc:shared/equipment_nether_fortress"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 10,
-          "functions": [
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
-            }
-          ],
-          "value": "yungsbettertfc:shared/equipment_nether_fortress"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/leggings"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 10,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/leggings",
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
               "options": "#minecraft:on_random_loot",
               "levels": 20.0
-            },
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
             }
-          ],
-          "value": "yungsbettertfc:shared/equipment_nether_fortress"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 5,
-          "functions": [
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
-            }
-          ],
-          "value": "yungsbettertfc:shared/equipment_nether_fortress"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/leggings"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 5,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/leggings",
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
               "options": "#minecraft:on_random_loot",
               "levels": 30.0
-            },
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
             }
-          ],
-          "value": "yungsbettertfc:shared/equipment_nether_fortress"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 20,
-          "functions": [
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
-            }
-          ],
-          "value": "yungsbettertfc:shared/equipment_nether_fortress"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/boots"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 20,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/boots",
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
               "options": "#minecraft:on_random_loot",
               "levels": 10.0
-            },
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
             }
-          ],
-          "value": "yungsbettertfc:shared/equipment_nether_fortress"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 10,
-          "functions": [
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
-            }
-          ],
-          "value": "yungsbettertfc:shared/equipment_nether_fortress"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/boots"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 10,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/boots",
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
               "options": "#minecraft:on_random_loot",
               "levels": 20.0
-            },
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
             }
-          ],
-          "value": "yungsbettertfc:shared/equipment_nether_fortress"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 5,
-          "functions": [
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
-            }
-          ],
-          "value": "yungsbettertfc:shared/equipment_nether_fortress"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/boots"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 5,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/boots",
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
               "options": "#minecraft:on_random_loot",
               "levels": 30.0
-            },
-            {
-              "add": false,
-              "damage": {
-                "type": "minecraft:uniform",
-                "max": 0.8,
-                "min": 0.1
-              },
-              "function": "minecraft:set_damage"
             }
-          ],
-          "value": "yungsbettertfc:shared/equipment_nether_fortress"
+          ]
         }
       ]
     }

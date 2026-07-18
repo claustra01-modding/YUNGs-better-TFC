@@ -9,257 +9,258 @@
       },
       "entries": [
         {
-          "type": "minecraft:loot_table",
           "weight": 5,
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/sword"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 2,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/sword",
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
               "options": "#minecraft:on_random_loot",
               "levels": 10.0
             }
-          ],
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 5,
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/sword"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 1,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/sword",
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
               "options": "#minecraft:on_random_loot",
               "levels": 20.0
             }
-          ],
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 1,
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/sword"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 1,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/sword",
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
               "options": "#minecraft:on_random_loot",
               "levels": 30.0
             }
-          ],
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 5,
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/helmet"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 5,
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/chestplate"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 5,
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/leggings"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 5,
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/boots"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 3,
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/helmet"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 3,
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/chestplate"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 3,
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/leggings"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 3,
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/boots"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 5,
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/helmet"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 1,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/helmet",
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
               "options": "#minecraft:on_random_loot",
               "levels": 20.0
             }
-          ],
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 5,
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/chestplate"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 1,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/chestplate",
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
               "options": "#minecraft:on_random_loot",
               "levels": 20.0
             }
-          ],
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 5,
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/leggings"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 1,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/leggings",
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
               "options": "#minecraft:on_random_loot",
               "levels": 20.0
             }
-          ],
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 5,
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/boots"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 1,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/boots",
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
               "options": "#minecraft:on_random_loot",
               "levels": 20.0
             }
-          ],
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 1,
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/helmet"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 1,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/helmet",
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
               "options": "#minecraft:on_random_loot",
               "levels": 30.0
             }
-          ],
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 1,
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/chestplate"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 1,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/chestplate",
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
               "options": "#minecraft:on_random_loot",
               "levels": 30.0
             }
-          ],
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 1,
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/leggings"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 1,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/leggings",
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
               "options": "#minecraft:on_random_loot",
               "levels": 30.0
             }
-          ],
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 1,
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/boots"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 1,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/boots",
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
               "options": "#minecraft:on_random_loot",
               "levels": 30.0
             }
-          ],
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 6,
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/shield"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 5,
-          "value": "yungsbettertfc:shared/ranged_weapon"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/bow"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 1,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/dangerous/bow",
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
               "options": "#minecraft:on_random_loot",
               "levels": 30.0
             }
-          ],
-          "value": "yungsbettertfc:shared/ranged_weapon"
+          ]
         },
         {
+          "weight": 7,
           "type": "minecraft:loot_table",
-          "weight": 7,
+          "value": "yungsbettertfc:shared/coal_like",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -269,12 +270,12 @@
                 "type": "minecraft:uniform"
               }
             }
-          ],
-          "value": "yungsbettertfc:shared/coal_like"
+          ]
         },
         {
-          "type": "minecraft:item",
           "weight": 7,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/coal_like",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -284,8 +285,7 @@
                 "type": "minecraft:uniform"
               }
             }
-          ],
-          "name": "minecraft:charcoal"
+          ]
         }
       ]
     }

@@ -43,15 +43,15 @@
           "name": "minecraft:book"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 3,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/ordinary/bow",
           "functions": [
             {
               "function": "minecraft:enchant_randomly",
               "options": "#minecraft:on_random_loot"
             }
-          ],
-          "value": "yungsbettertfc:shared/ranged_weapon"
+          ]
         },
         {
           "type": "minecraft:item",
@@ -231,8 +231,9 @@
       },
       "entries": [
         {
-          "type": "minecraft:loot_table",
           "weight": 10,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/ingots/ordinary",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -242,12 +243,12 @@
                 "type": "minecraft:uniform"
               }
             }
-          ],
-          "value": "yungsbettertfc:shared/metals_overworld"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 5,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/ingots/ordinary",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -257,8 +258,7 @@
                 "type": "minecraft:uniform"
               }
             }
-          ],
-          "value": "yungsbettertfc:shared/metals_overworld"
+          ]
         },
         {
           "type": "minecraft:item",
@@ -306,8 +306,9 @@
           "name": "minecraft:bone"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 10,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/fertilizers",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -317,8 +318,7 @@
                 "type": "minecraft:uniform"
               }
             }
-          ],
-          "value": "yungsbettertfc:shared/fertilizers"
+          ]
         }
       ]
     }

@@ -5,7 +5,9 @@
       "bonus_rolls": 0.0,
       "entries": [
         {
+          "weight": 5,
           "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/gems",
           "functions": [
             {
               "add": false,
@@ -16,12 +18,12 @@
               },
               "function": "minecraft:set_count"
             }
-          ],
-          "value": "yungsbettertfc:shared/gems",
-          "weight": 5
+          ]
         },
         {
+          "weight": 5,
           "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/ingots/dangerous",
           "functions": [
             {
               "add": false,
@@ -32,12 +34,12 @@
               },
               "function": "minecraft:set_count"
             }
-          ],
-          "value": "yungsbettertfc:shared/metals_nether_fortress",
-          "weight": 5
+          ]
         },
         {
+          "weight": 15,
           "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/ingots/dangerous",
           "functions": [
             {
               "add": false,
@@ -48,19 +50,17 @@
               },
               "function": "minecraft:set_count"
             }
-          ],
-          "value": "yungsbettertfc:shared/metals_nether_fortress",
-          "weight": 15
+          ]
         },
         {
+          "weight": 5,
           "type": "minecraft:loot_table",
-          "value": "yungsbettertfc:shared/equipment_nether_fortress",
-          "weight": 5
+          "value": "yungsbettertfc:shared/equipment/dangerous/sword"
         },
         {
+          "weight": 5,
           "type": "minecraft:loot_table",
-          "value": "yungsbettertfc:shared/equipment_nether_fortress",
-          "weight": 5
+          "value": "yungsbettertfc:shared/equipment/dangerous/chestplate"
         },
         {
           "type": "minecraft:item",
@@ -89,22 +89,24 @@
           "weight": 10
         },
         {
+          "weight": 8,
           "type": "minecraft:loot_table",
-          "value": "yungsbettertfc:shared/horse_armor_nether_fortress",
-          "weight": 8
+          "value": "yungsbettertfc:shared/equipment/dangerous/horse_armor"
         },
         {
+          "weight": 5,
           "type": "minecraft:loot_table",
-          "value": "yungsbettertfc:shared/horse_armor_nether_fortress",
-          "weight": 5
+          "value": "yungsbettertfc:shared/equipment/dangerous/horse_armor"
         },
         {
+          "weight": 3,
           "type": "minecraft:loot_table",
-          "value": "yungsbettertfc:shared/horse_armor_nether_fortress",
-          "weight": 3
+          "value": "yungsbettertfc:shared/equipment/dangerous/horse_armor"
         },
         {
-          "type": "minecraft:item",
+          "weight": 2,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/utility",
           "functions": [
             {
               "add": false,
@@ -115,9 +117,7 @@
               },
               "function": "minecraft:set_count"
             }
-          ],
-          "name": "minecraft:obsidian",
-          "weight": 2
+          ]
         }
       ],
       "rolls": {

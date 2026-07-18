@@ -10,7 +10,9 @@
           "weight": 10
         },
         {
+          "weight": 3,
           "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/gems",
           "functions": [
             {
               "add": false,
@@ -21,12 +23,12 @@
               },
               "function": "minecraft:set_count"
             }
-          ],
-          "value": "yungsbettertfc:shared/gems",
-          "weight": 3
+          ]
         },
         {
+          "weight": 10,
           "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/ingots/ordinary",
           "functions": [
             {
               "add": false,
@@ -37,12 +39,12 @@
               },
               "function": "minecraft:set_count"
             }
-          ],
-          "value": "yungsbettertfc:shared/metals_stronghold",
-          "weight": 10
+          ]
         },
         {
+          "weight": 5,
           "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/ingots/ordinary",
           "functions": [
             {
               "add": false,
@@ -53,9 +55,7 @@
               },
               "function": "minecraft:set_count"
             }
-          ],
-          "value": "yungsbettertfc:shared/metals_stronghold",
-          "weight": 5
+          ]
         },
         {
           "type": "minecraft:item",
@@ -74,7 +74,9 @@
           "weight": 5
         },
         {
+          "weight": 15,
           "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/produce",
           "functions": [
             {
               "add": false,
@@ -85,12 +87,12 @@
               },
               "function": "minecraft:set_count"
             }
-          ],
-          "value": "yungsbettertfc:shared/produce",
-          "weight": 15
+          ]
         },
         {
+          "weight": 15,
           "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/produce",
           "functions": [
             {
               "add": false,
@@ -101,39 +103,37 @@
               },
               "function": "minecraft:set_count"
             }
-          ],
-          "value": "yungsbettertfc:shared/produce",
-          "weight": 15
+          ]
         },
         {
+          "weight": 5,
           "type": "minecraft:loot_table",
-          "value": "yungsbettertfc:shared/equipment_stronghold",
-          "weight": 5
+          "value": "yungsbettertfc:shared/equipment/ordinary/pickaxe"
         },
         {
+          "weight": 5,
           "type": "minecraft:loot_table",
-          "value": "yungsbettertfc:shared/equipment_stronghold",
-          "weight": 5
+          "value": "yungsbettertfc:shared/equipment/ordinary/sword"
         },
         {
+          "weight": 5,
           "type": "minecraft:loot_table",
-          "value": "yungsbettertfc:shared/equipment_stronghold",
-          "weight": 5
+          "value": "yungsbettertfc:shared/equipment/ordinary/chestplate"
         },
         {
+          "weight": 5,
           "type": "minecraft:loot_table",
-          "value": "yungsbettertfc:shared/equipment_stronghold",
-          "weight": 5
+          "value": "yungsbettertfc:shared/equipment/ordinary/helmet"
         },
         {
+          "weight": 5,
           "type": "minecraft:loot_table",
-          "value": "yungsbettertfc:shared/equipment_stronghold",
-          "weight": 5
+          "value": "yungsbettertfc:shared/equipment/ordinary/leggings"
         },
         {
+          "weight": 5,
           "type": "minecraft:loot_table",
-          "value": "yungsbettertfc:shared/equipment_stronghold",
-          "weight": 5
+          "value": "yungsbettertfc:shared/equipment/ordinary/boots"
         },
         {
           "type": "minecraft:item",
@@ -145,15 +145,15 @@
         },
         {
           "type": "minecraft:loot_table",
-          "value": "yungsbettertfc:shared/horse_armor_stronghold"
+          "value": "yungsbettertfc:shared/equipment/ordinary/horse_armor"
         },
         {
           "type": "minecraft:loot_table",
-          "value": "yungsbettertfc:shared/horse_armor_stronghold"
+          "value": "yungsbettertfc:shared/equipment/ordinary/horse_armor"
         },
         {
           "type": "minecraft:loot_table",
-          "value": "yungsbettertfc:shared/horse_armor_stronghold"
+          "value": "yungsbettertfc:shared/equipment/ordinary/horse_armor"
         },
         {
           "type": "minecraft:item",

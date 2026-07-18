@@ -30,9 +30,9 @@
           "weight": 10
         },
         {
-          "type": "minecraft:item",
-          "name": "tfc:metal/pickaxe/wrought_iron",
-          "weight": 5
+          "weight": 5,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/ordinary/pickaxe"
         },
         {
           "type": "minecraft:empty",
@@ -45,7 +45,9 @@
       "bonus_rolls": 0.0,
       "entries": [
         {
+          "weight": 10,
           "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/ingots/ordinary",
           "functions": [
             {
               "add": false,
@@ -56,12 +58,12 @@
               },
               "function": "minecraft:set_count"
             }
-          ],
-          "value": "yungsbettertfc:shared/metals_overworld",
-          "weight": 10
+          ]
         },
         {
+          "weight": 5,
           "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/ingots/ordinary",
           "functions": [
             {
               "add": false,
@@ -72,9 +74,7 @@
               },
               "function": "minecraft:set_count"
             }
-          ],
-          "value": "yungsbettertfc:shared/metals_overworld",
-          "weight": 5
+          ]
         },
         {
           "type": "minecraft:item",
@@ -93,7 +93,9 @@
           "weight": 5
         },
         {
+          "weight": 5,
           "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/gems",
           "functions": [
             {
               "add": false,
@@ -104,12 +106,12 @@
               },
               "function": "minecraft:set_count"
             }
-          ],
-          "value": "yungsbettertfc:shared/gems",
-          "weight": 5
+          ]
         },
         {
+          "weight": 3,
           "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/gems",
           "functions": [
             {
               "add": false,
@@ -120,12 +122,12 @@
               },
               "function": "minecraft:set_count"
             }
-          ],
-          "value": "yungsbettertfc:shared/gems",
-          "weight": 3
+          ]
         },
         {
+          "weight": 10,
           "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/coal_like",
           "functions": [
             {
               "add": false,
@@ -136,12 +138,12 @@
               },
               "function": "minecraft:set_count"
             }
-          ],
-          "value": "yungsbettertfc:shared/coal_like",
-          "weight": 10
+          ]
         },
         {
+          "weight": 15,
           "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/produce",
           "functions": [
             {
               "add": false,
@@ -152,12 +154,12 @@
               },
               "function": "minecraft:set_count"
             }
-          ],
-          "value": "yungsbettertfc:shared/produce",
-          "weight": 15
+          ]
         },
         {
+          "weight": 15,
           "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/produce",
           "functions": [
             {
               "add": false,
@@ -168,12 +170,12 @@
               },
               "function": "minecraft:set_count"
             }
-          ],
-          "value": "yungsbettertfc:shared/produce",
-          "weight": 15
+          ]
         },
         {
+          "weight": 10,
           "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/seeds",
           "functions": [
             {
               "add": false,
@@ -184,12 +186,12 @@
               },
               "function": "minecraft:set_count"
             }
-          ],
-          "value": "yungsbettertfc:shared/seeds",
-          "weight": 10
+          ]
         },
         {
+          "weight": 10,
           "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/seeds",
           "functions": [
             {
               "add": false,
@@ -200,12 +202,12 @@
               },
               "function": "minecraft:set_count"
             }
-          ],
-          "value": "yungsbettertfc:shared/seeds",
-          "weight": 10
+          ]
         },
         {
+          "weight": 10,
           "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/seeds",
           "functions": [
             {
               "add": false,
@@ -216,9 +218,7 @@
               },
               "function": "minecraft:set_count"
             }
-          ],
-          "value": "yungsbettertfc:shared/seeds",
-          "weight": 10
+          ]
         }
       ],
       "rolls": {

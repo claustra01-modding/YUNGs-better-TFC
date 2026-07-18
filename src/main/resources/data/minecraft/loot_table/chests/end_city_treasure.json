@@ -5,62 +5,82 @@
       "bonus_rolls": 0.0,
       "entries": [
         {
-          "type": "minecraft:loot_table",
-          "value": "yungsbettertfc:shared/gems",
           "weight": 5,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": { "type": "minecraft:uniform", "min": 2.0, "max": 7.0 },
-              "add": false
-            }
-          ]
-        },
-        {
-          "type": "minecraft:loot_table",
-          "value": "yungsbettertfc:shared/metals_end_city",
-          "weight": 10,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": { "type": "minecraft:uniform", "min": 4.0, "max": 8.0 },
-              "add": false
-            }
-          ]
-        },
-        {
-          "type": "minecraft:loot_table",
-          "value": "yungsbettertfc:shared/metals_end_city",
-          "weight": 15,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": { "type": "minecraft:uniform", "min": 2.0, "max": 7.0 },
-              "add": false
-            }
-          ]
-        },
-        {
           "type": "minecraft:loot_table",
           "value": "yungsbettertfc:shared/gems",
-          "weight": 2,
           "functions": [
             {
-              "function": "minecraft:set_count",
-              "count": { "type": "minecraft:uniform", "min": 2.0, "max": 6.0 },
-              "add": false
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 7.0,
+                "min": 2.0
+              },
+              "function": "minecraft:set_count"
             }
           ]
         },
         {
+          "weight": 10,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/ingots/lategame",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 8.0,
+                "min": 4.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ]
+        },
+        {
+          "weight": 15,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/ingots/lategame",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 7.0,
+                "min": 2.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ]
+        },
+        {
+          "weight": 2,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/gems",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 6.0,
+                "min": 2.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ]
+        },
+        {
+          "weight": 5,
           "type": "minecraft:loot_table",
           "value": "yungsbettertfc:shared/seeds",
-          "weight": 5,
           "functions": [
             {
-              "function": "minecraft:set_count",
-              "count": { "type": "minecraft:uniform", "min": 1.0, "max": 10.0 },
-              "add": false
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 10.0,
+                "min": 1.0
+              },
+              "function": "minecraft:set_count"
             }
           ]
         },
@@ -71,32 +91,254 @@
         },
         {
           "type": "minecraft:loot_table",
-          "value": "yungsbettertfc:shared/horse_armor_end_city",
-          "weight": 3
+          "value": "yungsbettertfc:shared/equipment/lategame/horse_armor"
         },
         {
           "type": "minecraft:loot_table",
-          "value": "yungsbettertfc:shared/equipment_end_city",
-          "weight": 42,
+          "value": "yungsbettertfc:shared/equipment/lategame/horse_armor"
+        },
+        {
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/lategame/horse_armor"
+        },
+        {
+          "weight": 3,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/lategame/sword",
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
               "levels": {
                 "type": "minecraft:uniform",
-                "min": 20.0,
-                "max": 39.0
+                "max": 39.0,
+                "min": 20.0
+              },
+              "options": "#minecraft:on_random_loot"
+            }
+          ]
+        },
+        {
+          "weight": 3,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/lategame/boots",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "options": "#minecraft:on_random_loot"
+            }
+          ]
+        },
+        {
+          "weight": 3,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/lategame/chestplate",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "options": "#minecraft:on_random_loot"
+            }
+          ]
+        },
+        {
+          "weight": 3,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/lategame/leggings",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "options": "#minecraft:on_random_loot"
+            }
+          ]
+        },
+        {
+          "weight": 3,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/lategame/helmet",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "options": "#minecraft:on_random_loot"
+            }
+          ]
+        },
+        {
+          "weight": 3,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/lategame/pickaxe",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "options": "#minecraft:on_random_loot"
+            }
+          ]
+        },
+        {
+          "weight": 3,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/lategame/shovel",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "options": "#minecraft:on_random_loot"
+            }
+          ]
+        },
+        {
+          "weight": 3,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/lategame/sword",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "options": "#minecraft:on_random_loot"
+            }
+          ]
+        },
+        {
+          "weight": 3,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/lategame/boots",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "options": "#minecraft:on_random_loot"
+            }
+          ]
+        },
+        {
+          "weight": 3,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/lategame/chestplate",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "options": "#minecraft:on_random_loot"
+            }
+          ]
+        },
+        {
+          "weight": 3,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/lategame/leggings",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "options": "#minecraft:on_random_loot"
+            }
+          ]
+        },
+        {
+          "weight": 3,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/lategame/helmet",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "options": "#minecraft:on_random_loot"
+            }
+          ]
+        },
+        {
+          "weight": 3,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/lategame/pickaxe",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
+              },
+              "options": "#minecraft:on_random_loot"
+            }
+          ]
+        },
+        {
+          "weight": 3,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/lategame/shovel",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": {
+                "type": "minecraft:uniform",
+                "max": 39.0,
+                "min": 20.0
               },
               "options": "#minecraft:on_random_loot"
             }
           ]
         }
       ],
-      "rolls": { "type": "minecraft:uniform", "min": 2.0, "max": 6.0 }
+      "rolls": {
+        "type": "minecraft:uniform",
+        "max": 6.0,
+        "min": 2.0
+      }
     },
     {
       "bonus_rolls": 0.0,
       "entries": [
-        { "type": "minecraft:empty", "weight": 14 },
+        {
+          "type": "minecraft:empty",
+          "weight": 14
+        },
         {
           "type": "minecraft:item",
           "name": "minecraft:spire_armor_trim_smithing_template"

@@ -9,8 +9,9 @@
       },
       "entries": [
         {
-          "type": "minecraft:loot_table",
           "weight": 10,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/ingots/dangerous",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -20,12 +21,12 @@
                 "type": "minecraft:uniform"
               }
             }
-          ],
-          "value": "yungsbettertfc:shared/metals_stronghold"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 1,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/ingots/dangerous",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -35,8 +36,7 @@
                 "type": "minecraft:uniform"
               }
             }
-          ],
-          "value": "yungsbettertfc:shared/metals_stronghold"
+          ]
         },
         {
           "type": "minecraft:item",
@@ -54,8 +54,9 @@
           "name": "minecraft:redstone"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 10,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/coal_like",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -65,12 +66,12 @@
                 "type": "minecraft:uniform"
               }
             }
-          ],
-          "value": "yungsbettertfc:shared/coal_like"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 15,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/produce",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -80,12 +81,12 @@
                 "type": "minecraft:uniform"
               }
             }
-          ],
-          "value": "yungsbettertfc:shared/produce"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 15,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/produce",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -95,12 +96,12 @@
                 "type": "minecraft:uniform"
               }
             }
-          ],
-          "value": "yungsbettertfc:shared/produce"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 15,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/produce",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -110,8 +111,7 @@
                 "type": "minecraft:uniform"
               }
             }
-          ],
-          "value": "yungsbettertfc:shared/produce"
+          ]
         },
         {
           "type": "minecraft:item",
@@ -130,11 +130,11 @@
         },
         {
           "type": "minecraft:loot_table",
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          "value": "yungsbettertfc:shared/equipment/dangerous/pickaxe"
         },
         {
           "type": "minecraft:loot_table",
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          "value": "yungsbettertfc:shared/equipment/dangerous/pickaxe"
         },
         {
           "type": "minecraft:item",
@@ -142,15 +142,15 @@
         },
         {
           "type": "minecraft:loot_table",
-          "value": "yungsbettertfc:shared/horse_armor_stronghold"
+          "value": "yungsbettertfc:shared/equipment/dangerous/horse_armor"
         },
         {
           "type": "minecraft:loot_table",
-          "value": "yungsbettertfc:shared/horse_armor_stronghold"
+          "value": "yungsbettertfc:shared/equipment/dangerous/horse_armor"
         },
         {
           "type": "minecraft:loot_table",
-          "value": "yungsbettertfc:shared/horse_armor_stronghold"
+          "value": "yungsbettertfc:shared/equipment/dangerous/horse_armor"
         },
         {
           "type": "minecraft:item",
@@ -184,7 +184,7 @@
               }
             }
           ],
-          "name": "minecraft:torch"
+          "name": "tfc:torch"
         },
         {
           "type": "minecraft:item",

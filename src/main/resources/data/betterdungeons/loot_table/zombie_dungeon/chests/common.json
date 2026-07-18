@@ -68,58 +68,59 @@
       },
       "entries": [
         {
-          "type": "minecraft:loot_table",
           "weight": 3,
-          "value": "yungsbettertfc:shared/equipment_overworld"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/ordinary/sword"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 3,
-          "value": "yungsbettertfc:shared/equipment_overworld"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/ordinary/axe"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 3,
-          "value": "yungsbettertfc:shared/equipment_overworld"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/ordinary/shovel"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 2,
-          "value": "yungsbettertfc:shared/equipment_overworld"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/ordinary/sword"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 2,
-          "value": "yungsbettertfc:shared/equipment_overworld"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/ordinary/axe"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 2,
-          "value": "yungsbettertfc:shared/equipment_overworld"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/ordinary/shovel"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 2,
-          "value": "yungsbettertfc:shared/equipment_overworld"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/ordinary/helmet"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 2,
-          "value": "yungsbettertfc:shared/equipment_overworld"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/ordinary/chestplate"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 2,
-          "value": "yungsbettertfc:shared/equipment_overworld"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/ordinary/leggings"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 2,
-          "value": "yungsbettertfc:shared/equipment_overworld"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/ordinary/boots"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 2,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/ingots/ordinary",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -129,12 +130,12 @@
                 "type": "minecraft:uniform"
               }
             }
-          ],
-          "value": "yungsbettertfc:shared/metals_overworld"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 2,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/ingots/ordinary",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -144,23 +145,22 @@
                 "type": "minecraft:uniform"
               }
             }
-          ],
-          "value": "yungsbettertfc:shared/metals_overworld"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 1,
-          "value": "yungsbettertfc:shared/equipment_overworld"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/ordinary/sword"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 1,
-          "value": "yungsbettertfc:shared/equipment_overworld"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/ordinary/axe"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 1,
-          "value": "yungsbettertfc:shared/equipment_overworld"
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/ordinary/shovel"
         }
       ]
     },
@@ -172,8 +172,9 @@
       },
       "entries": [
         {
-          "type": "minecraft:loot_table",
           "weight": 3,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/produce",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -183,12 +184,12 @@
                 "type": "minecraft:uniform"
               }
             }
-          ],
-          "value": "yungsbettertfc:shared/produce"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 3,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/coal_like",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -198,8 +199,7 @@
                 "type": "minecraft:uniform"
               }
             }
-          ],
-          "value": "yungsbettertfc:shared/coal_like"
+          ]
         },
         {
           "type": "minecraft:item",
@@ -214,11 +214,12 @@
               }
             }
           ],
-          "name": "minecraft:torch"
+          "name": "tfc:torch"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 3,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/seeds",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -228,12 +229,12 @@
                 "type": "minecraft:uniform"
               }
             }
-          ],
-          "value": "yungsbettertfc:shared/seeds"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 3,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/seeds",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -243,8 +244,7 @@
                 "type": "minecraft:uniform"
               }
             }
-          ],
-          "value": "yungsbettertfc:shared/seeds"
+          ]
         },
         {
           "type": "minecraft:item",
@@ -296,8 +296,9 @@
           "name": "minecraft:rotten_flesh"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 5,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/produce",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -307,12 +308,12 @@
                 "type": "minecraft:uniform"
               }
             }
-          ],
-          "value": "yungsbettertfc:shared/produce"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 5,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/produce",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -322,8 +323,7 @@
                 "type": "minecraft:uniform"
               }
             }
-          ],
-          "value": "yungsbettertfc:shared/produce"
+          ]
         }
       ]
     }

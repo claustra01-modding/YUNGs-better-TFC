@@ -10,8 +10,9 @@
       "bonus_rolls": 0.0,
       "entries": [
         {
-          "type": "minecraft:item",
           "weight": 50,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/utility",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -22,12 +23,12 @@
               },
               "add": false
             }
-          ],
-          "name": "minecraft:obsidian"
+          ]
         },
         {
-          "type": "minecraft:item",
           "weight": 50,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/utility",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -38,8 +39,7 @@
               },
               "add": false
             }
-          ],
-          "name": "minecraft:crying_obsidian"
+          ]
         }
       ]
     },
@@ -57,8 +57,8 @@
           "name": "minecraft:flint_and_steel"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 5,
+          "type": "minecraft:loot_table",
           "value": "yungsbettertfc:shared/gems"
         }
       ]

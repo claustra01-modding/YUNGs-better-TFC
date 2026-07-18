@@ -9,23 +9,9 @@
       },
       "entries": [
         {
-          "type": "minecraft:item",
           "weight": 10,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 2.0,
-                "max": 4.0,
-                "type": "minecraft:uniform"
-              }
-            }
-          ],
-          "name": "minecraft:charcoal"
-        },
-        {
           "type": "minecraft:loot_table",
-          "weight": 10,
+          "value": "yungsbettertfc:shared/coal_like",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -35,8 +21,22 @@
                 "type": "minecraft:uniform"
               }
             }
-          ],
-          "value": "yungsbettertfc:shared/coal_like"
+          ]
+        },
+        {
+          "weight": 10,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/coal_like",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 4.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ]
         },
         {
           "type": "minecraft:item",
@@ -51,7 +51,7 @@
               }
             }
           ],
-          "name": "minecraft:torch"
+          "name": "tfc:torch"
         },
         {
           "type": "minecraft:item",
@@ -69,8 +69,8 @@
           "name": "minecraft:stick"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 10,
+          "type": "minecraft:loot_table",
           "value": "yungsbettertfc:shared/gems"
         }
       ]

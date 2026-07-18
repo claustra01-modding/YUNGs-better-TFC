@@ -9,8 +9,9 @@
       },
       "entries": [
         {
-          "type": "minecraft:loot_table",
           "weight": 1,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/ingots/dangerous",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -20,12 +21,12 @@
                 "type": "minecraft:uniform"
               }
             }
-          ],
-          "value": "yungsbettertfc:shared/metals_stronghold"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 1,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/ingots/dangerous",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -35,12 +36,12 @@
                 "type": "minecraft:uniform"
               }
             }
-          ],
-          "value": "yungsbettertfc:shared/metals_stronghold"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 1,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/gems",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -50,12 +51,12 @@
                 "type": "minecraft:uniform"
               }
             }
-          ],
-          "value": "yungsbettertfc:shared/gems"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 1,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/gems",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -65,8 +66,7 @@
                 "type": "minecraft:uniform"
               }
             }
-          ],
-          "value": "yungsbettertfc:shared/gems"
+          ]
         },
         {
           "type": "minecraft:item",

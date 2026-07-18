@@ -698,869 +698,159 @@ overworld dungeon 互換と同じ方針が明確な item だけを shared loot t
 
 ## 戦利品仕様
 
-戦利品テーブル上書きはファイル単位で依存元/バニラの同名 table を置き換える。
-この節では、依存元との差分として「削除した参照」と「追加した参照」を全件列挙する。
-`xN` は同じ参照が N 回存在することを表す。
-
-保持されるバニラ参照は、この節で削除として記載されていない限り維持する。
-例: 本、地図、鞍、music disc、redstone、potion、string、bone、rotten flesh、
-nether wart、trim template など。
-
-### End City 戦利品差分
-
-End City の `minecraft:end_city/*` テンプレートには共通ブロック置換を適用する。
-End dimension の utility-only scope により、テンプレート内の `minecraft:chest` は
-既定 wood の `tfc:wood/chest/oak` へ置換する。`EndCityPieces#handleDataMarker` は
-配置後の chest block entity に `minecraft:chests/end_city_treasure` を設定するため、
-TFC chest でもこの節の戦利品テーブルを維持する。
-
-#### `data/minecraft/loot_table/chests/end_city_treasure.json`
-
-- 元の pool 1 の rolls `2～6`、全 entry の weight、set_count の個数範囲を維持する。
-- 元の pool 2 と `spire_armor_trim_smithing_template` の出現率 `1/15` を維持する。
-- 置換後の装備には、元 entry と同じ `minecraft:enchant_with_levels` を適用する。
-  level は一様分布 `20～39`、options は `#minecraft:on_random_loot` とする。
-- 同じ shared table に置換される同条件 entry は weight を合算してよい。
-  装備14 entry は各 weight 3 なので、`equipment_end_city` 1 entry の weight 42 とする。
-- 削除:
-  - `item:minecraft:diamond`
-  - `item:minecraft:iron_ingot`
-  - `item:minecraft:gold_ingot`
-  - `item:minecraft:emerald`
-  - `item:minecraft:beetroot_seeds`
-  - `item:minecraft:iron_horse_armor`
-  - `item:minecraft:golden_horse_armor`
-  - `item:minecraft:diamond_horse_armor`
-  - `item:minecraft:diamond_sword`
-  - `item:minecraft:diamond_boots`
-  - `item:minecraft:diamond_chestplate`
-  - `item:minecraft:diamond_leggings`
-  - `item:minecraft:diamond_helmet`
-  - `item:minecraft:diamond_pickaxe`
-  - `item:minecraft:diamond_shovel`
-  - `item:minecraft:iron_sword`
-  - `item:minecraft:iron_boots`
-  - `item:minecraft:iron_chestplate`
-  - `item:minecraft:iron_leggings`
-  - `item:minecraft:iron_helmet`
-  - `item:minecraft:iron_pickaxe`
-  - `item:minecraft:iron_shovel`
-- 追加:
-  - `loot_table:yungsbettertfc:shared/gemsx2`
-  - `loot_table:yungsbettertfc:shared/metals_end_cityx2`
-  - `loot_table:yungsbettertfc:shared/seeds`
-  - `loot_table:yungsbettertfc:shared/horse_armor_end_city`
-    （元の3 entry分を合算した weight 3）
-  - `loot_table:yungsbettertfc:shared/equipment_end_city`
-    （元の14 entry分を合算した weight 42）
-
-### Better Dungeons 戦利品差分
-
-#### `data/betterdungeons/loot_table/skeleton_dungeon/chests/common.json`
-
-- 削除:
-  - `item:minecraft:bow`
-  - `item:minecraft:iron_ingot`
-  - `item:minecraft:gold_ingot`
-  - `item:minecraft:bone_meal`
-- 追加:
-  - `loot_table:yungsbettertfc:shared/ranged_weapon`
-  - `loot_table:yungsbettertfc:shared/metals_overworldx2`
-  - `loot_table:yungsbettertfc:shared/fertilizers`
-
-#### `data/betterdungeons/loot_table/skeleton_dungeon/chests/middle.json`
-
-- 削除:
-  - `item:minecraft:coal`
-  - `item:minecraft:diamond`
-- 追加:
-  - `loot_table:yungsbettertfc:shared/coal_like`
-  - `loot_table:yungsbettertfc:shared/gems`
-
-#### `data/betterdungeons/loot_table/small_dungeon/chests/loot_piles.json`
-
-- 依存元と完全一致。
-- 参照差分なし。
-
-#### `data/betterdungeons/loot_table/small_nether_dungeon/chests/common.json`
-
-- 削除:
-  - `item:minecraft:coalx2`
-  - `item:minecraft:iron_ingot`
-  - `item:minecraft:gold_ingotx2`
-  - `item:minecraft:gold_nugget`
-  - `item:minecraft:golden_horse_armor`
-  - `item:minecraft:golden_sword`
-  - `item:minecraft:golden_boots`
-  - `item:minecraft:golden_chestplate`
-  - `item:minecraft:golden_leggings`
-  - `item:minecraft:golden_helmet`
-  - `item:minecraft:iron_sword`
-  - `item:minecraft:chainmail_boots`
-  - `item:minecraft:chainmail_chestplate`
-  - `item:minecraft:chainmail_leggings`
-  - `item:minecraft:chainmail_helmet`
-- 追加:
-  - `loot_table:yungsbettertfc:shared/coal_likex2`
-  - `loot_table:yungsbettertfc:shared/metals_small_netherx4`
-  - `loot_table:yungsbettertfc:shared/horse_armor_small_nether`
-  - `loot_table:yungsbettertfc:shared/equipment_small_netherx10`
-
-#### `data/betterdungeons/loot_table/spider_dungeon/chests/egg_room.json`
-
-- 削除:
-  - `item:minecraft:diamond`
-  - `item:minecraft:coal`
-  - `item:minecraft:beetroot_seeds`
-  - `item:minecraft:pumpkin_seeds`
-  - `item:minecraft:melon_seeds`
-- 追加:
-  - `loot_table:yungsbettertfc:shared/gems`
-  - `loot_table:yungsbettertfc:shared/coal_like`
-  - `loot_table:yungsbettertfc:shared/seedsx3`
-
-#### `data/betterdungeons/loot_table/zombie_dungeon/chests/common.json`
-
-- 削除:
-  - `item:minecraft:stone_sword`
-  - `item:minecraft:stone_axe`
-  - `item:minecraft:stone_shovel`
-  - `item:minecraft:iron_sword`
-  - `item:minecraft:iron_axe`
-  - `item:minecraft:iron_shovel`
-  - `item:minecraft:iron_helmet`
-  - `item:minecraft:iron_chestplate`
-  - `item:minecraft:iron_leggings`
-  - `item:minecraft:iron_boots`
-  - `item:minecraft:iron_ingot`
-  - `item:minecraft:gold_ingot`
-  - `item:minecraft:diamond_sword`
-  - `item:minecraft:diamond_axe`
-  - `item:minecraft:diamond_shovel`
-  - `item:minecraft:apple`
-  - `item:minecraft:coal`
-  - `item:minecraft:beetroot_seeds`
-  - `item:minecraft:wheat_seeds`
-  - `item:minecraft:carrot`
-  - `item:minecraft:potato`
-- 追加:
-  - `loot_table:yungsbettertfc:shared/equipment_overworldx13`
-  - `loot_table:yungsbettertfc:shared/metals_overworldx2`
-  - `loot_table:yungsbettertfc:shared/producex3`
-  - `loot_table:yungsbettertfc:shared/coal_like`
-  - `loot_table:yungsbettertfc:shared/seedsx2`
-
-#### `data/betterdungeons/loot_table/zombie_dungeon/chests/special.json`
-
-- 削除:
-  - `item:minecraft:stone_sword`
-  - `item:minecraft:stone_axe`
-  - `item:minecraft:stone_shovel`
-  - `item:minecraft:iron_sword`
-  - `item:minecraft:iron_axe`
-  - `item:minecraft:iron_shovel`
-  - `item:minecraft:iron_helmet`
-  - `item:minecraft:iron_chestplate`
-  - `item:minecraft:iron_leggings`
-  - `item:minecraft:iron_boots`
-  - `item:minecraft:iron_ingot`
-  - `item:minecraft:gold_ingot`
-  - `item:minecraft:diamond_sword`
-  - `item:minecraft:diamond_axe`
-  - `item:minecraft:diamond_shovel`
-  - `item:minecraft:apple`
-  - `item:minecraft:coal`
-  - `item:minecraft:beetroot_seeds`
-  - `item:minecraft:wheat_seeds`
-  - `item:minecraft:carrot`
-  - `item:minecraft:potato`
-- 追加:
-  - `loot_table:yungsbettertfc:shared/equipment_overworldx13`
-  - `loot_table:yungsbettertfc:shared/metals_overworldx2`
-  - `loot_table:yungsbettertfc:shared/producex3`
-  - `loot_table:yungsbettertfc:shared/coal_like`
-  - `loot_table:yungsbettertfc:shared/seedsx2`
-
-#### `data/betterdungeons/loot_table/zombie_dungeon/chests/tombstone.json`
-
-- 削除:
-  - `item:minecraft:bone_meal`
-  - `item:minecraft:emerald`
-  - `item:minecraft:diamond`
-  - `item:minecraft:diamond_sword`
-- 追加:
-  - `loot_table:yungsbettertfc:shared/fertilizers`
-  - `loot_table:yungsbettertfc:shared/gemsx2`
-  - `loot_table:yungsbettertfc:shared/equipment_overworld`
-
-### Better Fortresses 戦利品差分
-
-#### `data/betterfortresses/loot_table/chests/beacon.json`
-
-- 削除:
-  - `item:minecraft:bowx3`
-- 追加:
-  - `loot_table:yungsbettertfc:shared/ranged_weaponx3`
-
-#### `data/betterfortresses/loot_table/chests/extra.json`
-
-- 削除:
-  - `item:minecraft:iron_nugget`
-  - `item:minecraft:gold_nugget`
-  - `item:minecraft:iron_ingot`
-  - `item:minecraft:gold_ingot`
-- 追加:
-  - `loot_table:yungsbettertfc:shared/metals_nether_fortressx4`
-
-#### `data/betterfortresses/loot_table/chests/hall.json`
-
-- 削除:
-  - `item:minecraft:iron_nugget`
-  - `item:minecraft:gold_nugget`
-  - `item:minecraft:iron_ingot`
-  - `item:minecraft:gold_ingot`
-- 追加:
-  - `loot_table:yungsbettertfc:shared/metals_nether_fortressx4`
-
-#### `data/betterfortresses/loot_table/chests/keep.json`
-
-- 削除:
-  - `item:minecraft:coal`
-  - `item:minecraft:iron_horse_armor`
-  - `item:minecraft:golden_horse_armor`
-  - `item:minecraft:diamond_horse_armor`
-  - `item:minecraft:stone_swordx2`
-  - `item:minecraft:iron_swordx2`
-  - `item:minecraft:golden_swordx2`
-  - `item:minecraft:leather_helmetx2`
-  - `item:minecraft:chainmail_helmetx2`
-  - `item:minecraft:golden_helmetx2`
-  - `item:minecraft:leather_chestplatex2`
-  - `item:minecraft:chainmail_chestplatex2`
-  - `item:minecraft:golden_chestplatex2`
-  - `item:minecraft:leather_leggingsx2`
-  - `item:minecraft:chainmail_leggingsx2`
-  - `item:minecraft:golden_leggingsx2`
-  - `item:minecraft:leather_bootsx2`
-  - `item:minecraft:chainmail_bootsx2`
-  - `item:minecraft:golden_bootsx2`
-- 追加:
-  - `loot_table:yungsbettertfc:shared/coal_like`
-  - `loot_table:yungsbettertfc:shared/horse_armor_nether_fortressx3`
-  - `loot_table:yungsbettertfc:shared/equipment_nether_fortressx30`
-
-#### `data/betterfortresses/loot_table/chests/obsidian.json`
-
-- 削除:
-  - `item:minecraft:diamond`
-- 追加:
-  - `loot_table:yungsbettertfc:shared/gems`
-
-#### `data/betterfortresses/loot_table/chests/puzzle.json`
-
-- 削除:
-  - `item:minecraft:iron_nugget`
-  - `item:minecraft:gold_nugget`
-  - `item:minecraft:iron_ingot`
-  - `item:minecraft:gold_ingot`
-  - `item:minecraft:diamond`
-- 追加:
-  - `loot_table:yungsbettertfc:shared/metals_nether_fortressx4`
-  - `loot_table:yungsbettertfc:shared/gems`
-
-#### `data/betterfortresses/loot_table/chests/quarters.json`
-
-- 削除:
-  - `item:minecraft:iron_nugget`
-  - `item:minecraft:gold_nugget`
-  - `item:minecraft:iron_ingot`
-  - `item:minecraft:gold_ingot`
-  - `item:minecraft:diamond`
-- 追加:
-  - `loot_table:yungsbettertfc:shared/metals_nether_fortressx4`
-  - `loot_table:yungsbettertfc:shared/gems`
-
-#### `data/betterfortresses/loot_table/chests/storage.json`
-
-- 削除:
-  - `item:minecraft:iron_nugget`
-  - `item:minecraft:gold_nugget`
-  - `item:minecraft:gold_ingot`
-  - `item:minecraft:diamond`
-- 追加:
-  - `loot_table:yungsbettertfc:shared/metals_nether_fortressx3`
-  - `loot_table:yungsbettertfc:shared/gems`
-
-#### `data/betterfortresses/loot_table/chests/worship.json`
-
-- 削除:
-  - `item:minecraft:iron_nugget`
-  - `item:minecraft:gold_nugget`
-  - `item:minecraft:iron_ingot`
-  - `item:minecraft:gold_ingot`
-  - `item:minecraft:diamond`
-- 追加:
-  - `loot_table:yungsbettertfc:shared/metals_nether_fortressx4`
-  - `loot_table:yungsbettertfc:shared/gems`
-
-### Better Ocean Monuments 戦利品差分
-
-#### `data/betteroceanmonuments/loot_table/chests/upper_side_chamber.json`
-
-- 依存元と完全一致。
-- 参照差分なし。
-
-### Better Strongholds 戦利品差分
-
-#### `data/betterstrongholds/loot_table/chests/armoury.json`
-
-- 削除:
-  - `item:minecraft:wooden_swordx2`
-  - `item:minecraft:iron_swordx2`
-  - `item:minecraft:diamond_swordx2`
-  - `item:minecraft:leather_helmet`
-  - `item:minecraft:leather_chestplate`
-  - `item:minecraft:leather_leggings`
-  - `item:minecraft:leather_boots`
-  - `item:minecraft:chainmail_helmet`
-  - `item:minecraft:chainmail_chestplate`
-  - `item:minecraft:chainmail_leggings`
-  - `item:minecraft:chainmail_boots`
-  - `item:minecraft:iron_helmetx2`
-  - `item:minecraft:iron_chestplatex2`
-  - `item:minecraft:iron_leggingsx2`
-  - `item:minecraft:iron_bootsx2`
-  - `item:minecraft:diamond_helmetx2`
-  - `item:minecraft:diamond_chestplatex2`
-  - `item:minecraft:diamond_leggingsx2`
-  - `item:minecraft:diamond_bootsx2`
-  - `item:minecraft:shield`
-  - `item:minecraft:bowx2`
-  - `item:minecraft:coal`
-- 追加:
-  - `loot_table:yungsbettertfc:shared/equipment_strongholdx31`
-  - `loot_table:yungsbettertfc:shared/ranged_weaponx2`
-  - `loot_table:yungsbettertfc:shared/coal_like`
-
-#### `data/betterstrongholds/loot_table/chests/cmd_yung.json`
-
-- 削除:
-  - `item:minecraft:diamond_sword`
-- 追加:
-  - `loot_table:yungsbettertfc:shared/equipment_stronghold`
-
-#### `data/betterstrongholds/loot_table/chests/common.json`
-
-- 削除:
-  - `item:minecraft:iron_ingot`
-  - `item:minecraft:gold_ingot`
-  - `item:minecraft:coal`
-  - `item:minecraft:bread`
-  - `item:minecraft:potato`
-  - `item:minecraft:apple`
-  - `item:minecraft:iron_pickaxe`
-  - `item:minecraft:wooden_pickaxe`
-  - `item:minecraft:iron_horse_armor`
-  - `item:minecraft:golden_horse_armor`
-  - `item:minecraft:diamond_horse_armor`
-- 追加:
-  - `loot_table:yungsbettertfc:shared/metals_strongholdx2`
-  - `loot_table:yungsbettertfc:shared/coal_like`
-  - `loot_table:yungsbettertfc:shared/producex3`
-  - `loot_table:yungsbettertfc:shared/equipment_strongholdx2`
-  - `loot_table:yungsbettertfc:shared/horse_armor_strongholdx3`
-
-#### `data/betterstrongholds/loot_table/chests/crypt.json`
-
-- 削除:
-  - `item:minecraft:bone_meal`
-  - `item:minecraft:diamond`
-  - `item:minecraft:iron_sword`
-- 追加:
-  - `loot_table:yungsbettertfc:shared/fertilizers`
-  - `loot_table:yungsbettertfc:shared/gems`
-  - `loot_table:yungsbettertfc:shared/equipment_stronghold`
-
-#### `data/betterstrongholds/loot_table/chests/grand_library.json`
-
-- 依存元と完全一致。
-- 参照差分なし。
-
-#### `data/betterstrongholds/loot_table/chests/library_md.json`
-
-- 依存元と完全一致。
-- 参照差分なし。
-
-#### `data/betterstrongholds/loot_table/chests/mess.json`
-
-- 削除:
-  - `item:minecraft:bread`
-  - `item:minecraft:apple`
-  - `item:minecraft:potato`
-  - `item:minecraft:beetroot`
-  - `item:minecraft:melon_slice`
-- 追加:
-  - `loot_table:yungsbettertfc:shared/producex5`
-
-#### `data/betterstrongholds/loot_table/chests/prison_lg.json`
-
-- 削除:
-  - `item:minecraft:coal`
-  - `item:minecraft:diamond`
-  - `item:minecraft:emerald`
-- 追加:
-  - `loot_table:yungsbettertfc:shared/coal_like`
-  - `loot_table:yungsbettertfc:shared/gemsx2`
-
-#### `data/betterstrongholds/loot_table/chests/trap.json`
-
-- 削除:
-  - `item:minecraft:iron_ingot`
-  - `item:minecraft:gold_ingot`
-  - `item:minecraft:diamond`
-  - `item:minecraft:emerald`
-- 追加:
-  - `loot_table:yungsbettertfc:shared/metals_strongholdx2`
-  - `loot_table:yungsbettertfc:shared/gemsx2`
-
-#### `data/betterstrongholds/loot_table/chests/treasure.json`
-
-- 削除:
-  - `item:minecraft:iron_ingot`
-  - `item:minecraft:iron_nugget`
-  - `item:minecraft:gold_ingot`
-  - `item:minecraft:gold_nugget`
-  - `item:minecraft:diamond`
-  - `item:minecraft:emerald`
-  - `item:minecraft:lapis_lazuli`
-- 追加:
-  - `loot_table:yungsbettertfc:shared/metals_strongholdx4`
-  - `loot_table:yungsbettertfc:shared/gemsx3`
-
-### バニラ Minecraft 戦利品差分
-
-#### `data/minecraft/loot_table/chests/abandoned_mineshaft.json`
-
-Better Mineshafts の全 loot コンテナもこの vanilla table を参照する。
-
-- 削除:
-  - `item:minecraft:iron_pickaxe`
-  - `item:minecraft:iron_ingot`
-  - `item:minecraft:gold_ingot`
-  - `item:minecraft:lapis_lazuli`
-  - `item:minecraft:diamond`
-  - `item:minecraft:coal`
-  - `item:minecraft:bread`
-  - `item:minecraft:glow_berries`
-  - `item:minecraft:melon_seeds`
-  - `item:minecraft:pumpkin_seeds`
-  - `item:minecraft:beetroot_seeds`
-  - `item:minecraft:torch`
-- 追加:
-  - `item:tfc:metal/pickaxe/wrought_iron`
-  - `loot_table:yungsbettertfc:shared/metals_overworldx2`
-  - `loot_table:yungsbettertfc:shared/gemsx2`
-  - `loot_table:yungsbettertfc:shared/coal_like`
-  - `loot_table:yungsbettertfc:shared/producex2`
-  - `loot_table:yungsbettertfc:shared/seedsx3`
-  - `item:tfc:torch`
-- 方針保留で未置換:
-  - `item:minecraft:rail`
-  - `item:minecraft:powered_rail`
-  - `item:minecraft:detector_rail`
-  - `item:minecraft:activator_rail`
-
-#### `data/minecraft/loot_table/chests/nether_bridge.json`
-
-- 削除:
-  - `item:minecraft:diamond`
-  - `item:minecraft:iron_ingot`
-  - `item:minecraft:gold_ingot`
-  - `item:minecraft:golden_sword`
-  - `item:minecraft:golden_chestplate`
-  - `item:minecraft:golden_horse_armor`
-  - `item:minecraft:iron_horse_armor`
-  - `item:minecraft:diamond_horse_armor`
-- 追加:
-  - `loot_table:yungsbettertfc:shared/gems`
-  - `loot_table:yungsbettertfc:shared/metals_nether_fortressx2`
-  - `loot_table:yungsbettertfc:shared/equipment_nether_fortressx2`
-  - `loot_table:yungsbettertfc:shared/horse_armor_nether_fortressx3`
-
-#### `data/minecraft/loot_table/chests/simple_dungeon.json`
-
-- 削除:
-  - `item:minecraft:golden_horse_armor`
-  - `item:minecraft:iron_horse_armor`
-  - `item:minecraft:diamond_horse_armor`
-  - `item:minecraft:iron_ingot`
-  - `item:minecraft:gold_ingot`
-  - `item:minecraft:bread`
-  - `item:minecraft:wheat`
-  - `item:minecraft:coal`
-  - `item:minecraft:melon_seeds`
-  - `item:minecraft:pumpkin_seeds`
-  - `item:minecraft:beetroot_seeds`
-- 追加:
-  - `loot_table:yungsbettertfc:shared/horse_armor_overworldx3`
-  - `loot_table:yungsbettertfc:shared/metals_overworldx2`
-  - `loot_table:yungsbettertfc:shared/producex2`
-  - `loot_table:yungsbettertfc:shared/coal_like`
-  - `loot_table:yungsbettertfc:shared/seedsx3`
-
-#### `data/minecraft/loot_table/chests/stronghold_corridor.json`
-
-- 削除:
-  - `item:minecraft:diamond`
-  - `item:minecraft:iron_ingot`
-  - `item:minecraft:gold_ingot`
-  - `item:minecraft:bread`
-  - `item:minecraft:apple`
-  - `item:minecraft:iron_pickaxe`
-  - `item:minecraft:iron_sword`
-  - `item:minecraft:iron_chestplate`
-  - `item:minecraft:iron_helmet`
-  - `item:minecraft:iron_leggings`
-  - `item:minecraft:iron_boots`
-  - `item:minecraft:iron_horse_armor`
-  - `item:minecraft:golden_horse_armor`
-  - `item:minecraft:diamond_horse_armor`
-- 追加:
-  - `loot_table:yungsbettertfc:shared/gems`
-  - `loot_table:yungsbettertfc:shared/metals_strongholdx2`
-  - `loot_table:yungsbettertfc:shared/producex2`
-  - `loot_table:yungsbettertfc:shared/equipment_strongholdx6`
-  - `loot_table:yungsbettertfc:shared/horse_armor_strongholdx3`
-
-#### `data/minecraft/loot_table/chests/stronghold_crossing.json`
-
-- 削除:
-  - `item:minecraft:iron_ingot`
-  - `item:minecraft:gold_ingot`
-  - `item:minecraft:coal`
-  - `item:minecraft:bread`
-  - `item:minecraft:apple`
-  - `item:minecraft:iron_pickaxe`
-- 追加:
-  - `loot_table:yungsbettertfc:shared/metals_strongholdx2`
-  - `loot_table:yungsbettertfc:shared/coal_like`
-  - `loot_table:yungsbettertfc:shared/producex2`
-  - `loot_table:yungsbettertfc:shared/equipment_stronghold`
-
-#### `data/minecraft/loot_table/chests/stronghold_library.json`
-
-- バニラと完全一致。
-- 参照差分なし。
-
-## 新規 shared 戦利品テーブル
-
-### `data/yungsbettertfc/loot_table/shared/coal_like.json`
-
-- `item:tfc:bituminous_coal`
-- `item:tfc:lignite`
-- `item:tfc:powder/graphite`
-- `item:tfc:kaolin_clay`
-
-### `data/yungsbettertfc/loot_table/shared/ranged_weapon.json`
-
-- `item:minecraft:crossbow`
-- `item:minecraft:bow`
-
-### `data/yungsbettertfc/loot_table/shared/gems.json`
-
-- `tag:yungsbettertfc:loot/gems`
-
-### `data/yungsbettertfc/loot_table/shared/fertilizers.json`
-
-- `tag:yungsbettertfc:loot/fertilizers`
-
-### `data/yungsbettertfc/loot_table/shared/produce.json`
-
-- `tag:yungsbettertfc:loot/produce`
-
-### `data/yungsbettertfc/loot_table/shared/seeds.json`
-
-- `tag:yungsbettertfc:loot/seeds`
-
-### `data/yungsbettertfc/loot_table/shared/equipment_overworld.json`
-
-- `tag:yungsbettertfc:loot/equipment/overworld_rare`
-- `tag:yungsbettertfc:loot/equipment/overworld_common`
-
-### `data/yungsbettertfc/loot_table/shared/equipment_small_nether.json`
-
-- `tag:yungsbettertfc:loot/equipment/small_nether`
-
-### `data/yungsbettertfc/loot_table/shared/equipment_nether_fortress.json`
-
-- `tag:yungsbettertfc:loot/equipment/nether_fortress_rare`
-- `tag:yungsbettertfc:loot/equipment/nether_fortress_common`
-
-### `data/yungsbettertfc/loot_table/shared/equipment_stronghold.json`
-
-- `tag:yungsbettertfc:loot/equipment/stronghold`
-
-### `data/yungsbettertfc/loot_table/shared/equipment_end_city.json`
-
-- `tag:yungsbettertfc:loot/equipment/end_city`
-
-### `data/yungsbettertfc/loot_table/shared/horse_armor_overworld.json`
-
-- `tag:yungsbettertfc:loot/horse_armor/overworld_rare`
-- `tag:yungsbettertfc:loot/horse_armor/overworld_common`
-
-### `data/yungsbettertfc/loot_table/shared/horse_armor_small_nether.json`
-
-- `tag:yungsbettertfc:loot/horse_armor/small_nether`
-
-### `data/yungsbettertfc/loot_table/shared/horse_armor_nether_fortress.json`
-
-- `tag:yungsbettertfc:loot/horse_armor/nether_fortress_rare`
-- `tag:yungsbettertfc:loot/horse_armor/nether_fortress_common`
-
-### `data/yungsbettertfc/loot_table/shared/horse_armor_stronghold.json`
-
-- `tag:yungsbettertfc:loot/horse_armor/stronghold`
-
-### `data/yungsbettertfc/loot_table/shared/horse_armor_end_city.json`
-
-- `tag:yungsbettertfc:loot/horse_armor/end_city`
-
-### `data/yungsbettertfc/loot_table/shared/metals_overworld.json`
-
-- `tag:yungsbettertfc:loot/metals_sheet/overworld_rare`
-- `tag:yungsbettertfc:loot/metals_rod/overworld_rare`
-- `tag:yungsbettertfc:loot/metals_ingot/overworld_rare`
-- `tag:yungsbettertfc:loot/metals_sheet/overworld_common`
-- `tag:yungsbettertfc:loot/metals_rod/overworld_common`
-- `tag:yungsbettertfc:loot/metals_ingot/overworld_common`
-
-### `data/yungsbettertfc/loot_table/shared/metals_small_nether.json`
-
-- `tag:yungsbettertfc:loot/metals_sheet/small_nether`
-- `tag:yungsbettertfc:loot/metals_rod/small_nether`
-- `tag:yungsbettertfc:loot/metals_ingot/small_nether`
-
-### `data/yungsbettertfc/loot_table/shared/metals_nether_fortress.json`
-
-- `tag:yungsbettertfc:loot/metals_sheet/nether_fortress_rare`
-- `tag:yungsbettertfc:loot/metals_rod/nether_fortress_rare`
-- `tag:yungsbettertfc:loot/metals_ingot/nether_fortress_rare`
-- `tag:yungsbettertfc:loot/metals_sheet/nether_fortress_common`
-- `tag:yungsbettertfc:loot/metals_rod/nether_fortress_common`
-- `tag:yungsbettertfc:loot/metals_ingot/nether_fortress_common`
-
-### `data/yungsbettertfc/loot_table/shared/metals_stronghold.json`
-
-- `tag:yungsbettertfc:loot/metals_sheet/stronghold`
-- `tag:yungsbettertfc:loot/metals_rod/stronghold`
-- `tag:yungsbettertfc:loot/metals_ingot/stronghold`
-
-### `data/yungsbettertfc/loot_table/shared/metals_end_city.json`
-
-- `tag:yungsbettertfc:loot/metals_sheet/end_city`
-- `tag:yungsbettertfc:loot/metals_rod/end_city`
-- `tag:yungsbettertfc:loot/metals_ingot/end_city`
-
-## 戦利品 item tag 内容
-
-### 金属 item tag の段階
-
-`metals_ingot`, `metals_rod`, `metals_sheet` は、suffix だけが違い、material
-集合は同じ。
-
-- `overworld_common`:
-  - `copper`
-  - `bronze`
-  - `bismuth_bronze`
-  - `wrought_iron`
-  - `bismuth`
-  - `tin`
-  - `zinc`
-  - `brass`
-- `overworld_rare`:
-  - `black_bronze`
-  - `steel`
-- `small_nether`:
-  - `wrought_iron`
-  - `steel`
-  - `gold`
-  - `silver`
-  - `nickel`
-- `nether_fortress_common`:
-  - `wrought_iron`
-  - `steel`
-  - `gold`
-  - `silver`
-  - `nickel`
-- `nether_fortress_rare`:
-  - `black_steel`
-- `stronghold`:
-  - `steel`
-  - `black_steel`
-- `end_city`:
-  - `black_steel`
-  - `red_steel`
-  - `blue_steel`
-
-実際の item id は以下の形にする。
-
-- ingot: `tfc:metal/ingot/<material>`
-- rod: `tfc:metal/rod/<material>`
-- sheet: `tfc:metal/sheet/<material>`
-
-### 装備 item tag の段階
-
-各 material について、以下の equipment id を全て含める。
-
-- `sword`
-- `mace`
-- `javelin`
-- `axe`
-- `shovel`
-- `pickaxe`
-- `hoe`
-- `knife`
-- `scythe`
-- `propick`
-- `chisel`
-- `hammer`
-- `saw`
-- `shears`
-- `helmet`
-- `chestplate`
-- `greaves`
-- `boots`
-- `shield`
-
-material 集合:
-
-- `overworld_common`: `bronze`, `bismuth_bronze`, `wrought_iron`
-- `overworld_rare`: `black_bronze`, `steel`
-- `small_nether`: `wrought_iron`, `steel`
-- `nether_fortress_common`: `wrought_iron`, `steel`
-- `nether_fortress_rare`: `black_steel`
-- `stronghold`: `steel`, `black_steel`
-- `end_city`: `black_steel`, `red_steel`, `blue_steel`
-
-実際の item id は `tfc:metal/<equipment>/<material>` の形にする。
-
-### 馬鎧 item tag
-
-- `overworld_common`:
-  - `tfc:metal/horse_armor/bronze`
-  - `tfc:metal/horse_armor/bismuth_bronze`
-  - `tfc:metal/horse_armor/wrought_iron`
-- `overworld_rare`:
-  - `tfc:metal/horse_armor/black_bronze`
-  - `tfc:metal/horse_armor/steel`
-- `small_nether`:
-  - `tfc:metal/horse_armor/wrought_iron`
-  - `tfc:metal/horse_armor/steel`
-- `nether_fortress_common`:
-  - `tfc:metal/horse_armor/wrought_iron`
-  - `tfc:metal/horse_armor/steel`
-- `nether_fortress_rare`:
-  - `tfc:metal/horse_armor/black_steel`
-- `stronghold`:
-  - `tfc:metal/horse_armor/steel`
-  - `tfc:metal/horse_armor/black_steel`
-- `end_city`:
-  - `tfc:metal/horse_armor/black_steel`
-  - `tfc:metal/horse_armor/red_steel`
-  - `tfc:metal/horse_armor/blue_steel`
-
-### 宝石
-
-- `tfc:gem/amethyst`
-- `tfc:gem/diamond`
-- `tfc:gem/emerald`
-- `tfc:gem/lapis_lazuli`
-- `tfc:gem/opal`
-- `tfc:gem/pyrite`
-- `tfc:gem/ruby`
-- `tfc:gem/sapphire`
-- `tfc:gem/topaz`
-
-### 肥料
-
-- `tfc:compost`
-- `tfc:rotten_compost`
+戦利品置換は [TFC互換loot table 共通再設計仕様](https://gist.github.com/claustra01/0b96699ab853bc17da8384426c6ffe5b)
+を正本とする。依存元JARおよびMinecraft 1.21.1の同名loot tableから
+`scripts/regenerate_loot_tables.py` で上書きJSONを再生成する。既存の上書きJSONを
+再生成時の入力にしてはならない。
+
+### 必ず保持する元仕様
+
+- pool数、pool順、`rolls`、`bonus_rolls`
+- entry数、entry順、`weight`、`quality`
+- `conditions` とcount provider
+- 元の `set_count` の範囲および個数
+- エンチャント、damage、nameなど、完成品に適用可能な元function
+- YUNG系mod固有itemおよび置換対象外のバニラitem
+- 元itemのカテゴリ、装備slot、tool family、資源形態
+- 同条件entryを合算せず、元entryを一対一で残す
+
+### 構造物profile
+
+- `ordinary`: abandoned mineshaft、simple dungeon、Better Dungeonsの通常dungeon
+- `dangerous`: small nether dungeon、Better Fortresses、Better Strongholds、
+  vanilla nether bridge
+- `lategame`: End City
+- Better Ocean Monumentsは、該当する置換対象がない限り依存元をそのまま保持する。
+
+### 金属tier
+
+- `ordinary` generic ingot: copper、bronze、bismuth bronze、black bronze、wrought iron
+- `ordinary` equipment: copper、bronze、bismuth bronze、black bronze
+- `dangerous` generic ingot: wrought iron、steel
+- `dangerous` equipment: wrought iron
+- `lategame` generic ingot: steel、black steel
+- `lategame` equipment: steel
+- red steelとblue steelはgeneric lootに含めない。
+- black steelは`lategame`のingot候補だけに含め、部品、装備、horse armorには使わない。
+
+### 資源カテゴリ
+
+- diamond、emerald、lapis lazuli、amethyst shardは
+  `yungsbettertfc:shared/gems`へ置換する。
+- iron ingotとgold ingotはprofile別の
+  `yungsbettertfc:shared/ingots/<profile>`へ置換する。
+- iron nuggetは`yungsbettertfc:shared/small_ores/iron`へ置換し、hematite、magnetite、
+  limoniteのsmall oreから選ぶ。
+- gold nuggetとraw goldは`tfc:ore/small_native_gold`へ置換する。
+- nuggetをingotへ、ingotをrodやsheetへ変えてはならない。
+- generic ingot候補にrodやsheetを混在させてはならない。
+
+### coal_like
+
+`yungsbettertfc:shared/coal_like`は次の4候補だけを含む。
+
+- `minecraft:charcoal`
+- `tfc:bituminous_coal`
+- `tfc:lignite`
+- `tfc:ore/graphite`
+
+minecraft coalとcharcoalをこのtableへ置換する。`tfc:powder/graphite`は使用しない。
+graphiteは`coal_like`以外のshared tableへ入れない。
+
+### utility
+
+obsidian、crying obsidian、quartz、glowstone dustは
+`yungsbettertfc:shared/utility`へ置換する。候補は次の7種類とする。
+
+- `tfc:powder/flux`
+- `minecraft:glass`
+- `minecraft:glass_pane`
+- `tfc:kaolin_clay`
 - `tfc:powder/wood_ash`
 - `tfc:powder/saltpeter`
 - `tfc:powder/sylvite`
-- `tfc:groundcover/guano`
 
-### 農作物と食料
+utilityにはcoal、charcoal、lignite、bituminous coal、graphiteを含めない。
+utility用の新規poolは追加せず、依存元のgeneric material/resource entryを置換する。
 
-- `tfc:food/blackberry`
-- `tfc:food/blueberry`
-- `tfc:food/bunchberry`
-- `tfc:food/cranberry`
-- `tfc:food/elderberry`
-- `tfc:food/gooseberry`
-- `tfc:food/cloudberry`
-- `tfc:food/raspberry`
-- `tfc:food/snowberry`
-- `tfc:food/strawberry`
-- `tfc:food/wintergreen_berry`
-- `tfc:food/red_apple`
-- `tfc:food/green_apple`
-- `tfc:food/plum`
-- `tfc:food/beet`
-- `tfc:food/cabbage`
-- `tfc:food/carrot`
-- `tfc:food/cassava`
-- `tfc:food/garlic`
-- `tfc:food/green_bean`
-- `tfc:food/lentil`
-- `tfc:food/maize`
-- `tfc:food/melon_slice`
-- `tfc:food/oat`
-- `tfc:food/onion`
-- `tfc:food/peanut`
-- `tfc:food/potato`
-- `tfc:food/pumpkin_chunks`
-- `tfc:food/rice`
-- `tfc:food/rye`
-- `tfc:food/soybean`
-- `tfc:food/squash`
-- `tfc:food/sugarcane`
-- `tfc:food/taro_root`
-- `tfc:food/tomato`
-- `tfc:food/wheat`
-- `tfc:food/barley`
-- `tfc:food/red_bell_pepper`
-- `tfc:food/yellow_bell_pepper`
+### 食料、種、肥料、torch
 
-### 種
+- apple、bread、carrot、potato、glow berries、wheat、beetroot、melon sliceは
+  `yungsbettertfc:shared/produce`へ置換する。
+- beetroot seeds、melon seeds、pumpkin seeds、wheat seedsは
+  `yungsbettertfc:shared/seeds`へ置換する。
+- bone mealは`yungsbettertfc:shared/fertilizers`へ置換する。
+- `minecraft:torch`は`tfc:torch`へ置換する。
 
-- `tfc:seeds/alfalfa`
-- `tfc:seeds/barley`
-- `tfc:seeds/beet`
-- `tfc:seeds/cabbage`
-- `tfc:seeds/canola`
-- `tfc:seeds/carrot`
-- `tfc:seeds/cassava`
-- `tfc:seeds/garlic`
-- `tfc:seeds/green_bean`
-- `tfc:seeds/jute`
-- `tfc:seeds/lentil`
-- `tfc:seeds/maize`
-- `tfc:seeds/melon`
-- `tfc:seeds/oat`
-- `tfc:seeds/onion`
-- `tfc:seeds/papyrus`
-- `tfc:seeds/peanut`
-- `tfc:seeds/potato`
-- `tfc:seeds/pumpkin`
-- `tfc:seeds/radish`
-- `tfc:seeds/red_bell_pepper`
-- `tfc:seeds/rice`
-- `tfc:seeds/rye`
-- `tfc:seeds/squash`
-- `tfc:seeds/soybean`
-- `tfc:seeds/sugarcane`
-- `tfc:seeds/tomato`
-- `tfc:seeds/wheat`
-- `tfc:seeds/yellow_bell_pepper`
+### 装備family
+
+元装備のfamilyとarmor slotを維持し、次の候補だけを使用する。
+
+- pickaxe -> pickaxe head、propick head、pickaxe、propick
+- axe -> axe head、saw blade、axe、saw
+- hoe -> hoe head、scythe blade、hoe、scythe
+- sword -> sword blade、javelin head、mace head、sword、javelin、mace
+- shovel -> shovel head、shovel
+- knife -> knife blade、knife
+- shears -> shears
+- shield -> shield
+- bow -> vanilla bow
+- crossbow -> vanilla crossbow
+- helmet -> unfinished helmet、helmet
+- chestplate -> unfinished chestplate、chestplate
+- leggings -> unfinished greaves、greaves
+- boots -> unfinished boots、boots
+- horse armor -> profileの完成済みhorse armor
+
+metal toolおよびarmorは、各部品候補のweightを2、各完成品候補のweightを1とし、
+部品:完成品の合計weightを2:1にする。未完成品が存在しないshears、shield、horse armor、
+bow、crossbowは完成品だけを候補にする。
+
+### function適用
+
+- `set_count`は元entry側に一度だけ残し、元のcount providerを変更しない。
+- 元lootに含まれる`minecraft:set_damage`は全て削除し、置換後itemへ適用しない。
+- `enchant_with_levels`と`enchant_randomly`は元entry側に保持する。TFC 4.2.5の
+  金属部品とunfinished armorはenchantabilityを持たないため、生成結果は完成品だけが
+  enchantされる。
+- Better Strongholdsの`chests/cmd_yung`にある`YUNG's Better Sword`は特例とする。
+  shared equipment tableを参照せず、`tfc:metal/sword/wrought_iron`を100%生成し、
+  元のlevel 30 enchant、`set_name`、weight 1をそのまま保持する。
+- End Cityを含め、依存元にenchantがある完成装備はそのenchantを維持する。
+
+### shared table配置
+
+- `shared/gems`
+- `shared/ingots/ordinary`
+- `shared/ingots/dangerous`
+- `shared/ingots/lategame`
+- `shared/small_ores/iron`
+- `shared/coal_like`
+- `shared/utility`
+- `shared/produce`
+- `shared/seeds`
+- `shared/fertilizers`
+- `shared/equipment/<profile>/<family>`
+
+旧`metals_*`、`equipment_*`、`horse_armor_*`、`ranged_weapon` shared tableと、
+それら専用のitem tagは使用しない。
+
+### 検証
+
+loot変更時は少なくとも次を確認する。
+
+- 全JSONをparseできる。
+- 依存元とのpool数、rolls、bonus rolls、entry数、weight、condition、countが一致する。
+- YUNG系mod固有itemが変化していない。
+- profileごとのtier上限を超えない。
+- red steelとblue steelが存在しない。
+- black steelがlategame ingot以外に存在しない。
+- ingot tableにingot以外、small ore tableにsmall ore以外が存在しない。
+- graphiteは`coal_like`内の`tfc:ore/graphite`だけである。
+- utilityにcoal_like資源が存在しない。
+- tool familyとarmor slotが一致する。
+- 部品:完成品のweightが2:1である。
+- 部品とunfinished armorの生成結果にenchantmentが付かない。
+- `set_count`が同じentryへ重複していない。
+- `--tfc-jar`で指定した実TFC JARのdatagen済みitem modelと全`tfc:` item idを照合し、欠落がない。
+- `./gradlew build`が成功する。Minecraftクライアントは検証のために起動しない。

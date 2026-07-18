@@ -9,8 +9,9 @@
       },
       "entries": [
         {
-          "type": "minecraft:loot_table",
           "weight": 3,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/ingots/dangerous",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -20,11 +21,40 @@
                 "type": "minecraft:uniform"
               }
             }
-          ],
-          "value": "yungsbettertfc:shared/metals_stronghold"
+          ]
         },
         {
+          "weight": 3,
           "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/small_ores/iron",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 7.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ]
+        },
+        {
+          "weight": 3,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/ingots/dangerous",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 3.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
           "weight": 3,
           "functions": [
             {
@@ -36,41 +66,12 @@
               }
             }
           ],
-          "value": "yungsbettertfc:shared/metals_stronghold"
+          "name": "tfc:ore/small_native_gold"
         },
         {
-          "type": "minecraft:loot_table",
-          "weight": 3,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 2.0,
-                "max": 3.0,
-                "type": "minecraft:uniform"
-              }
-            }
-          ],
-          "value": "yungsbettertfc:shared/metals_stronghold"
-        },
-        {
-          "type": "minecraft:loot_table",
-          "weight": 3,
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 2.0,
-                "max": 7.0,
-                "type": "minecraft:uniform"
-              }
-            }
-          ],
-          "value": "yungsbettertfc:shared/metals_stronghold"
-        },
-        {
-          "type": "minecraft:loot_table",
           "weight": 1,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/gems",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -80,12 +81,12 @@
                 "type": "minecraft:uniform"
               }
             }
-          ],
-          "value": "yungsbettertfc:shared/gems"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 1,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/gems",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -95,8 +96,7 @@
                 "type": "minecraft:uniform"
               }
             }
-          ],
-          "value": "yungsbettertfc:shared/gems"
+          ]
         },
         {
           "type": "minecraft:item",
@@ -114,8 +114,9 @@
           "name": "minecraft:redstone"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 3,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/gems",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -125,8 +126,7 @@
                 "type": "minecraft:uniform"
               }
             }
-          ],
-          "value": "yungsbettertfc:shared/gems"
+          ]
         }
       ]
     }

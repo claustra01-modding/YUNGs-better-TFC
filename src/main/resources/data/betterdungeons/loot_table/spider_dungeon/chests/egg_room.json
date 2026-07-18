@@ -24,8 +24,8 @@
           "name": "minecraft:enchanted_golden_apple"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 1,
+          "type": "minecraft:loot_table",
           "value": "yungsbettertfc:shared/gems"
         },
         {
@@ -216,8 +216,9 @@
           "name": "minecraft:spider_eye"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 3,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/coal_like",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -227,12 +228,12 @@
                 "type": "minecraft:uniform"
               }
             }
-          ],
-          "value": "yungsbettertfc:shared/coal_like"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 3,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/seeds",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -242,12 +243,12 @@
                 "type": "minecraft:uniform"
               }
             }
-          ],
-          "value": "yungsbettertfc:shared/seeds"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 3,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/seeds",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -257,12 +258,12 @@
                 "type": "minecraft:uniform"
               }
             }
-          ],
-          "value": "yungsbettertfc:shared/seeds"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 3,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/seeds",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -272,8 +273,7 @@
                 "type": "minecraft:uniform"
               }
             }
-          ],
-          "value": "yungsbettertfc:shared/seeds"
+          ]
         },
         {
           "type": "minecraft:item",

@@ -24,8 +24,9 @@
           "name": "minecraft:bone"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 5,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/fertilizers",
           "functions": [
             {
               "function": "minecraft:set_count",
@@ -35,22 +36,22 @@
                 "type": "minecraft:uniform"
               }
             }
-          ],
-          "value": "yungsbettertfc:shared/fertilizers"
+          ]
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 2,
+          "type": "minecraft:loot_table",
           "value": "yungsbettertfc:shared/gems"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 2,
+          "type": "minecraft:loot_table",
           "value": "yungsbettertfc:shared/gems"
         },
         {
-          "type": "minecraft:loot_table",
           "weight": 1,
+          "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/equipment/ordinary/sword",
           "functions": [
             {
               "function": "minecraft:enchant_randomly",
@@ -60,8 +61,7 @@
                 "fire_aspect"
               ]
             }
-          ],
-          "value": "yungsbettertfc:shared/equipment_overworld"
+          ]
         }
       ]
     }

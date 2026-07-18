@@ -5,7 +5,9 @@
       "bonus_rolls": 0.0,
       "entries": [
         {
+          "weight": 10,
           "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/ingots/ordinary",
           "functions": [
             {
               "add": false,
@@ -16,12 +18,12 @@
               },
               "function": "minecraft:set_count"
             }
-          ],
-          "value": "yungsbettertfc:shared/metals_stronghold",
-          "weight": 10
+          ]
         },
         {
+          "weight": 5,
           "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/ingots/ordinary",
           "functions": [
             {
               "add": false,
@@ -32,9 +34,7 @@
               },
               "function": "minecraft:set_count"
             }
-          ],
-          "value": "yungsbettertfc:shared/metals_stronghold",
-          "weight": 5
+          ]
         },
         {
           "type": "minecraft:item",
@@ -53,7 +53,9 @@
           "weight": 5
         },
         {
+          "weight": 10,
           "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/coal_like",
           "functions": [
             {
               "add": false,
@@ -64,12 +66,12 @@
               },
               "function": "minecraft:set_count"
             }
-          ],
-          "value": "yungsbettertfc:shared/coal_like",
-          "weight": 10
+          ]
         },
         {
+          "weight": 15,
           "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/produce",
           "functions": [
             {
               "add": false,
@@ -80,12 +82,12 @@
               },
               "function": "minecraft:set_count"
             }
-          ],
-          "value": "yungsbettertfc:shared/produce",
-          "weight": 15
+          ]
         },
         {
+          "weight": 15,
           "type": "minecraft:loot_table",
+          "value": "yungsbettertfc:shared/produce",
           "functions": [
             {
               "add": false,
@@ -96,13 +98,11 @@
               },
               "function": "minecraft:set_count"
             }
-          ],
-          "value": "yungsbettertfc:shared/produce",
-          "weight": 15
+          ]
         },
         {
           "type": "minecraft:loot_table",
-          "value": "yungsbettertfc:shared/equipment_stronghold"
+          "value": "yungsbettertfc:shared/equipment/ordinary/pickaxe"
         },
         {
           "type": "minecraft:item",
