@@ -58,6 +58,8 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
     private static final String DEFAULT_WOOD = "oak";
 
     private static final ResourceLocation TFC_FIREPIT = ResourceLocation.fromNamespaceAndPath(NS_TFC, "firepit");
+    private static final ResourceLocation TFC_BITUMINOUS_COAL =
+            ResourceLocation.fromNamespaceAndPath(NS_TFC, "bituminous_coal");
     private static final ResourceLocation TFC_SILKEN_PINCUSHION_CACTUS =
             ResourceLocation.fromNamespaceAndPath(NS_TFC, "plant/silken_pincushion_cactus");
 
@@ -496,6 +498,10 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
         @Nullable ResourceLocation wood = mapWoodUtilityOnly(vanillaPath, woodHint);
         if (wood != null) {
             return wood;
+        }
+
+        if ("coal_block".equals(vanillaPath)) {
+            return TFC_BITUMINOUS_COAL;
         }
 
         // Metal utilities (bars/chain/etc).
