@@ -178,7 +178,7 @@ def transform_node(value, current_profile: str, source_path: str):
 def shared_tables() -> dict[str, dict]:
     result = {
         "shared/gems": one_pool([item(f"tfc:gem/{gem}") for gem in ("amethyst", "diamond", "emerald", "lapis_lazuli", "opal", "pyrite", "ruby", "sapphire", "topaz")]),
-        "shared/coal_like": one_pool([item(name) for name in ("minecraft:charcoal", "tfc:bituminous_coal", "tfc:lignite", "tfc:ore/graphite")]),
+        "shared/coal_like": one_pool([item(name) for name in ("minecraft:charcoal", "tfc:ore/bituminous_coal", "tfc:ore/lignite", "tfc:ore/graphite")]),
         "shared/utility": one_pool([item(name) for name in ("tfc:powder/flux", "minecraft:glass", "minecraft:glass_pane", "tfc:kaolin_clay", "tfc:powder/wood_ash", "tfc:powder/saltpeter", "tfc:powder/sylvite")]),
         "shared/produce": one_pool([{"type": "minecraft:tag", "name": f"{MOD_ID}:loot/produce", "expand": True}]),
         "shared/seeds": one_pool([{"type": "minecraft:tag", "name": f"{MOD_ID}:loot/seeds", "expand": True}]),

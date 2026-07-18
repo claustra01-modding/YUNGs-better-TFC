@@ -750,11 +750,11 @@ overworld dungeon 互換と同じ方針が明確な item だけを shared loot t
 `yungsbettertfc:shared/coal_like`は次の4候補だけを含む。
 
 - `minecraft:charcoal`
-- `tfc:bituminous_coal`
-- `tfc:lignite`
+- `tfc:ore/bituminous_coal`
+- `tfc:ore/lignite`
 - `tfc:ore/graphite`
 
-minecraft coalとcharcoalをこのtableへ置換する。`tfc:powder/graphite`は使用しない。
+minecraft coalとcharcoalをこのtableへ置換する。全候補はblock itemではなく通常itemとする。`tfc:powder/graphite`は使用しない。
 graphiteは`coal_like`以外のshared tableへ入れない。
 
 ### utility
@@ -809,13 +809,14 @@ bow、crossbowは完成品だけを候補にする。
 ### function適用
 
 - `set_count`は元entry側に一度だけ残し、元のcount providerを変更しない。
-- 元lootに含まれる`minecraft:set_damage`は全て削除し、置換後itemへ適用しない。
+- 元lootに含まれる`minecraft:set_damage`は削除し、置換後itemへ適用しない。
+- `minecraft:set_name`は削除せず元entry側に保持する。このための個別shared tableは作成しない。
 - `enchant_with_levels`と`enchant_randomly`は元entry側に保持する。TFC 4.2.5の
   金属部品とunfinished armorはenchantabilityを持たないため、生成結果は完成品だけが
   enchantされる。
-- Better Strongholdsの`chests/cmd_yung`にある`YUNG's Better Sword`は特例とする。
+- Better Strongholdsの`chests/cmd_yung`にある元のdiamond swordは特例とする。
   shared equipment tableを参照せず、`tfc:metal/sword/wrought_iron`を100%生成し、
-  元のlevel 30 enchant、`set_name`、weight 1をそのまま保持する。
+  元のlevel 30 enchant、`set_name`、weight 1を維持する。
 - End Cityを含め、依存元にenchantがある完成装備はそのenchantを維持する。
 
 ### shared table配置

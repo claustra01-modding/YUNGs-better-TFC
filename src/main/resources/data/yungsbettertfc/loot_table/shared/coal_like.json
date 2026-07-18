@@ -10,11 +10,11 @@
         },
         {
           "type": "minecraft:item",
-          "name": "tfc:bituminous_coal"
+          "name": "tfc:ore/bituminous_coal"
         },
         {
           "type": "minecraft:item",
-          "name": "tfc:lignite"
+          "name": "tfc:ore/lignite"
         },
         {
           "type": "minecraft:item",
