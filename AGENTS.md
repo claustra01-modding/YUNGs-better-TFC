@@ -14,6 +14,7 @@
 - 小文字の `agents.md` は使わない。
 - 本書は作業規約と実装仕様を兼ねる。正確な数値、ID、条件、fallback、例外、優先順位は残し、同一規則の全registry entry転記は共通式へ畳む。
 - READMEは利用者向けの短い概要、配布先、build入口に絞り、詳細仕様を重複掲載しない。
+- ライセンスと第三者表示はrootの `LICENCE` 一つへ統合し、別のlicense/noticeファイルを作らない。
 - 挙動、対応版、依存、対象構造物、置換規則、worldgen、loot、検証手順を変更した場合は同じ変更で本書も更新する。
 - 対象版の実JAR・公式ソースで確認し、公開済みID、client/server境界、optional依存なしのclass loadingを守る。
 - 依存JAR、展開物、解析・生成scriptは `.tmp/` に置いてGit管理外にする。仕様と生成済みresourceを正本とし、JSONはBOMなしUTF-8とする。
