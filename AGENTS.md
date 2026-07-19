@@ -8,10 +8,16 @@
 今後の変更では、このファイルを仕様として扱う。ここに書かれた互換挙動は、
 ユーザーが明示的に変更を求めた場合を除いて維持する。
 
-## ファイル名
+## 共通開発ルール
 
 - 仕様ファイル名は `AGENTS.md` とする。
 - 小文字の `agents.md` は使わない。
+- 本書は作業規約と実装仕様を兼ねる。正確な数値、ID、条件、fallback、例外、優先順位は残し、同一規則の全registry entry転記は共通式へ畳む。
+- READMEは利用者向けの短い概要、配布先、build入口に絞り、詳細仕様を重複掲載しない。
+- 挙動、対応版、依存、対象構造物、置換規則、worldgen、loot、検証手順を変更した場合は同じ変更で本書も更新する。
+- 対象版の実JAR・公式ソースで確認し、公開済みID、client/server境界、optional依存なしのclass loadingを守る。
+- 依存JAR、展開物、解析・生成scriptは `.tmp/` に置いてGit管理外にする。仕様と生成済みresourceを正本とし、JSONはBOMなしUTF-8とする。
+- 無関係な差分、依存・version更新、format変更を混ぜない。
 
 ## バージョンと依存関係
 
@@ -96,241 +102,58 @@ data を基準に比較する。
 
 ## 実行時ブロック置換マップ
 
-### 火と調理
+具体的なregistry entryの正本は `TfcBlockReplacementProcessor` とする。変更時は以下の変換規則、fallback順、scopeを同時に保つ。
 
-- `minecraft:furnace` -> `tfc:firepit`
-- `minecraft:blast_furnace` -> `tfc:firepit`
+### 設備・鉱石
 
-### 鉱石
+- `furnace`、`smoker`、`blast_furnace`、`campfire`、`soul_campfire` はTFC firepitへ置換し、互換性のないblock entity NBTを破棄する。
+- Vanilla oreはTFC鉱石候補を優先順で解決し、配置地点のrock種を使う。対象gradeがないgem・coal系は非品位鉱石を使う。
+- Deepslate oreも同じTFC oreへ統合し、Vanillaのstone/deepslate差をTFC側へ持ち込まない。
+- ore候補がregistryに存在しない場合は次候補へ進み、全候補がない場合は元blockを維持する。
 
-候補が複数ある場合は、registry に存在する最初の TFC block を使う。
+### 岩石・砂岩・土壌
 
-- `minecraft:coal_ore`, `minecraft:deepslate_coal_ore` ->
-  `tfc:lignite`, fallback は `tfc:bituminous_coal`
-- `minecraft:iron_ore`, `minecraft:deepslate_iron_ore` ->
-  `tfc:ore/normal_hematite/<rock>`, fallback は `tfc:ore/normal_magnetite/<rock>`,
-  さらに fallback は `tfc:ore/normal_limonite/<rock>`
-- `minecraft:copper_ore`, `minecraft:deepslate_copper_ore` ->
-  `tfc:ore/normal_native_copper/<rock>`
-- `minecraft:gold_ore`, `minecraft:deepslate_gold_ore` ->
-  `tfc:ore/normal_native_gold/<rock>`
-- `minecraft:nether_gold_ore` ->
-  `tfc:ore/normal_native_gold/<rock>`
-- `minecraft:lapis_ore`, `minecraft:deepslate_lapis_ore` ->
-  `tfc:ore/lapis_lazuli/<rock>`
-- `minecraft:diamond_ore`, `minecraft:deepslate_diamond_ore` ->
-  `tfc:ore/diamond/<rock>`
-- `minecraft:emerald_ore`, `minecraft:deepslate_emerald_ore` ->
-  `tfc:ore/emerald/<rock>`
-- `minecraft:redstone_ore`, `minecraft:deepslate_redstone_ore` ->
-  `tfc:ore/cinnabar/<rock>`
-- `minecraft:nether_quartz_ore` -> `tfc:ore/quartz/<rock>`。ただし TFC block が存在する場合だけ。
+`<rock>` は周辺から検出したTFC rock、未検出時は既定rock。各Vanilla形状を次のTFC familyへ対応させる。
 
-### 石材と rock 種
+| Vanilla family | TFC family |
+| --- | --- |
+| stone / stone bricks | raw / bricks |
+| cobblestone | cobble |
+| polished stone | smooth |
+| chiseled stone | chiseled |
+| cracked / mossy bricks | cracked_bricks / mossy_bricks |
+| slab / stairs / wall / button / pressure plate | 同じfamilyの対応形状 |
+| stonecutter | `tfc:rock/loose/<rock>` |
 
-`<rock>` は検出した TFC rock、検出できない場合は dimension 既定 rock。
-
-- `stone_bricks` -> `tfc:rock/bricks/<rock>`
-- `mossy_stone_bricks` -> `tfc:rock/mossy_bricks/<rock>`
-- `cracked_stone_bricks` -> `tfc:rock/cracked_bricks/<rock>`
-- `chiseled_stone_bricks` -> `tfc:rock/chiseled/<rock>`
-- `stone_brick_stairs` -> `tfc:rock/bricks/<rock>_stairs`
-- `stone_brick_slab` -> `tfc:rock/bricks/<rock>_slab`
-- `stone_brick_wall` -> `tfc:rock/bricks/<rock>_wall`
-- `mossy_stone_brick_stairs` -> `tfc:rock/mossy_bricks/<rock>_stairs`
-- `mossy_stone_brick_slab` -> `tfc:rock/mossy_bricks/<rock>_slab`
-- `mossy_stone_brick_wall` -> `tfc:rock/mossy_bricks/<rock>_wall`
-- `cobblestone` -> `tfc:rock/cobble/<rock>`
-- `mossy_cobblestone` -> `tfc:rock/mossy_cobble/<rock>`
-- `cobblestone_stairs` -> `tfc:rock/cobble/<rock>_stairs`
-- `cobblestone_slab` -> `tfc:rock/cobble/<rock>_slab`
-- `cobblestone_wall` -> `tfc:rock/cobble/<rock>_wall`
-- `mossy_cobblestone_stairs` -> `tfc:rock/mossy_cobble/<rock>_stairs`
-- `mossy_cobblestone_slab` -> `tfc:rock/mossy_cobble/<rock>_slab`
-- `mossy_cobblestone_wall` -> `tfc:rock/mossy_cobble/<rock>_wall`
-- `stone` -> `tfc:rock/raw/<rock>`
-- `stone_stairs` -> `tfc:rock/raw/<rock>_stairs`
-- `stone_slab` -> `tfc:rock/raw/<rock>_slab`
-- `smooth_stone` -> `tfc:rock/smooth/<rock>`
-- `smooth_stone_slab` -> `tfc:rock/smooth/<rock>_slab`
-- `gravel` -> `tfc:rock/gravel/<rock>`
-- `andesite` -> `tfc:rock/raw/<rock>`
-- `andesite_stairs` -> `tfc:rock/raw/<rock>_stairs`
-- `andesite_slab` -> `tfc:rock/raw/<rock>_slab`
-- `andesite_wall` -> `tfc:rock/raw/<rock>_wall`
-- `polished_andesite` -> `tfc:rock/smooth/<rock>`
-- `polished_andesite_stairs` -> `tfc:rock/smooth/<rock>_stairs`
-- `polished_andesite_slab` -> `tfc:rock/smooth/<rock>_slab`
-- `stone_button` -> `tfc:rock/button/<rock>`
-- `stone_pressure_plate` -> `tfc:rock/pressure_plate/<rock>`
-
-### 砂岩
-
-- `sandstone` -> `tfc:raw_sandstone/yellow`
-- `sandstone_stairs` -> `tfc:raw_sandstone/yellow_stairs`
-- `sandstone_slab` -> `tfc:raw_sandstone/yellow_slab`
-- `sandstone_wall` -> `tfc:raw_sandstone/yellow_wall`
-- `chiseled_sandstone`, `cut_sandstone` -> `tfc:cut_sandstone/yellow`
-- `cut_sandstone_slab` -> `tfc:cut_sandstone/yellow_slab`
-- `smooth_sandstone` -> `tfc:smooth_sandstone/yellow`
-- `smooth_sandstone_stairs` -> `tfc:smooth_sandstone/yellow_stairs`
-- `smooth_sandstone_slab` -> `tfc:smooth_sandstone/yellow_slab`
-- `red_sandstone` -> `tfc:raw_sandstone/red`
-- `red_sandstone_stairs` -> `tfc:raw_sandstone/red_stairs`
-- `red_sandstone_slab` -> `tfc:raw_sandstone/red_slab`
-- `red_sandstone_wall` -> `tfc:raw_sandstone/red_wall`
-- `chiseled_red_sandstone`, `cut_red_sandstone` -> `tfc:cut_sandstone/red`
-- `cut_red_sandstone_slab` -> `tfc:cut_sandstone/red_slab`
-- `smooth_red_sandstone` -> `tfc:smooth_sandstone/red`
-- `smooth_red_sandstone_stairs` -> `tfc:smooth_sandstone/red_stairs`
-- `smooth_red_sandstone_slab` -> `tfc:smooth_sandstone/red_slab`
-
-### 土壌
-
-`<soil>` は検出した TFC soil、検出できない場合は `mollisol`。
-
-- `dirt` -> `tfc:dirt/<soil>`
-- `coarse_dirt` -> `tfc:coarse_dirt/<soil>`
-- `grass_block` -> `tfc:grass/<soil>`
-- `grass_path` -> `tfc:grass_path/<soil>`
-- `rooted_dirt` -> `tfc:rooted_dirt/<soil>`
-- `farmland` -> `tfc:farmland/<soil>`
-- `sand` -> `tfc:sand/yellow`
-- `red_sand` -> `tfc:sand/red`
+- Andesite、diorite、granite、deepslate、blackstone、tuff等も、構造物内では検出rockの同等familyへ統合する。
+- Yellow/Red sandstoneは色を維持し、raw/cut/smoothと各slab/stairs/wallへ対応させる。
+- `<soil>` は検出したTFC soil、未検出時は `mollisol`。dirt、coarse dirt、grass、grass path、rooted dirt、farmlandは同soilのTFC blockへ置換する。
+- sandはyellow、red sandはredのTFC sandへ置換する。
 
 ### 木材
 
-バニラ wood hint として扱う値:
+`<wood>` はtemplate内のVanilla wood hintをTFC woodへ正規化した値とする。
 
-- `oak`
-- `spruce`
-- `birch`
-- `jungle`
-- `acacia`
-- `dark_oak`
-- `mangrove`
-- `cherry`
-- `bamboo`
+- 直接対応: oak、spruce、birch、acacia、mangrove。
+- `dark_oak`、`cherry`、`bamboo`、`crimson`、`warped` はoakへ、`jungle` はacaciaへ正規化する。
+- log/wood/stripped系、planks、slab、stairs、fence、fence gate、door、trapdoor、button、pressure plate、signは同じTFC wood familyへ置換する。
+- chest、trapped chest、lectern、crafting tableはそれぞれTFC chest、trapped chest、lectern、workbenchへ置換する。
+- utility-only scopeでは木材建材を置換せず、chest、trapped chest、lectern、crafting tableだけを対象にする。
+- utility-only scopeではcoal blockも `tfc:bituminous_coal` へ置換する。
 
-TFC に存在しない wood は以下へ normalize する。
+### 金属・装飾・容器・灯り
 
-- `dark_oak` -> `oak`
-- `jungle` -> `acacia`
-- `cherry` -> `oak`
-- `bamboo` -> `oak`
-- `crimson` -> `oak`
-- `warped` -> `oak`
+- iron bars、chain、iron trapdoor等の鉄製構造物部品はTFC wrought iron相当へ置換する。
+- flower pot、植木、grass、fern、vine等は、TFCに明確な相当品があるものだけ置換する。植物の設置stateとNBTを壊さない。
+- torch、wall torch、lantern、candleはTFC相当品へ置換し、wall/facing等の共有propertyを引き継ぐ。
+- barrel、cauldron、composter等はTFC設備に1対1互換がある場合だけ置換し、block entity NBT互換がない場合は破棄する。
+- 対応先が存在しない装飾blockはVanillaのまま維持し、推測で近似blockへ置換しない。
 
-木材置換:
+### Beneath連携
 
-- `chest` -> `tfc:wood/chest/<wood>`
-- `trapped_chest` -> `tfc:wood/trapped_chest/<wood>`
-- `lectern` -> `tfc:wood/lectern/<wood>`
-- `crafting_table` -> `tfc:wood/workbench/<wood>`
-- `<wood>_planks` -> `tfc:wood/planks/<wood>`
-- `<wood>_stairs` -> `tfc:wood/planks/<wood>_stairs`
-- `<wood>_slab` -> `tfc:wood/planks/<wood>_slab`
-- `stripped_<wood>_log` -> `tfc:wood/stripped_log/<wood>`
-- `stripped_<wood>_wood` -> `tfc:wood/stripped_wood/<wood>`
-- `<wood>_log` -> `tfc:wood/log/<wood>`
-- `<wood>_wood` -> `tfc:wood/wood/<wood>`
-- `<wood>_fence_gate` -> `tfc:wood/fence_gate/<wood>`
-- `<wood>_fence` -> `tfc:wood/fence/<wood>`
-- `<wood>_door` -> `tfc:wood/door/<wood>`
-- `<wood>_trapdoor` -> `tfc:wood/trapdoor/<wood>`
-- `<wood>_pressure_plate` -> `tfc:wood/pressure_plate/<wood>`
-- `<wood>_button` -> `tfc:wood/button/<wood>`
-- `<wood>_wall_sign` -> `tfc:wood/wall_sign/<wood>`
-- `<wood>_sign` -> `tfc:wood/sign/<wood>`
-
-utility-only scope では、木材系は以下だけ置換する。
-
-- `chest`
-- `trapped_chest`
-- `lectern`
-- `crafting_table`
-
-utility-only scope では、以下の燃料ブロックも置換する。
-
-- `coal_block` -> `tfc:bituminous_coal`
-
-### 金属ブロック
-
-- `iron_bars` -> `tfc:metal/bars/wrought_iron`
-- `chain` -> `tfc:metal/chain/wrought_iron`
-- `iron_block` -> `tfc:metal/block/wrought_iron`
-- `iron_trapdoor` -> `tfc:metal/trapdoor/wrought_iron`
-- `gold_block`, `raw_gold_block` -> `tfc:metal/block/gold`
-- `copper_block`, `cut_copper` -> `tfc:metal/block/copper`
-- `cut_copper_slab` -> `tfc:metal/block/copper_slab`
-- `cut_copper_stairs` -> `tfc:metal/block/copper_stairs`
-- `exposed_copper`, `exposed_cut_copper` -> `tfc:metal/exposed_block/copper`
-- `exposed_cut_copper_slab` -> `tfc:metal/exposed_block/copper_slab`
-- `exposed_cut_copper_stairs` -> `tfc:metal/exposed_block/copper_stairs`
-- `weathered_copper`, `weathered_cut_copper` -> `tfc:metal/weathered_block/copper`
-- `weathered_cut_copper_slab` -> `tfc:metal/weathered_block/copper_slab`
-- `weathered_cut_copper_stairs` -> `tfc:metal/weathered_block/copper_stairs`
-- `oxidized_copper`, `oxidized_cut_copper`, `waxed_oxidized_cut_copper` ->
-  `tfc:metal/oxidized_block/copper`
-- `oxidized_cut_copper_slab`, `waxed_oxidized_cut_copper_slab` ->
-  `tfc:metal/oxidized_block/copper_slab`
-- `oxidized_cut_copper_stairs`, `waxed_oxidized_cut_copper_stairs` ->
-  `tfc:metal/oxidized_block/copper_stairs`
-
-anvil 系置換は意図的に無効化されている。
-
-### 植物、装飾、容器、灯り
-
-- `kelp`, `kelp_plant` -> `minecraft:water`
-- `seagrass`, `tall_seagrass` -> `tfc:plant/eel_grass`
-- `tall_seagrass` upper half -> `minecraft:water`
-- `sea_pickle` -> `tfc:sea_pickle`
-- `vine` -> `tfc:plant/ivy`
-- `cactus` の最下段 -> `tfc:plant/silken_pincushion_cactus`
-- `cactus` のうち、下方向に空気だけを挟んで `minecraft:cactus` または
-  `tfc:plant/silken_pincushion_cactus` がある上段 -> `minecraft:air`
-- `dead_bush` -> `tfc:plant/dead_bush`
-- `potted_<plant>` -> `tfc:plant/potted/<plant>`。ただし TFC block が存在する場合だけ。
-- `candle` -> `tfc:candle`
-- `<color>_candle` -> `tfc:candle/<color>`。ただし TFC block が存在する場合だけ。
-- `candle_cake` -> `tfc:candle_cake`
-- `<color>_candle_cake` -> `tfc:candle_cake/<color>`。ただし TFC block が存在する場合だけ。
-- `cauldron`, `water_cauldron`, `lava_cauldron`, `powder_snow_cauldron` ->
-  `tfc:ceramic/large_vessel`
-- `torch` -> `tfc:torch`
-- `wall_torch` -> `tfc:wall_torch`
-
-### Beneath Nether 連携
-
-Nether かつ Beneath の対象 block が registry に存在する場合だけ置換する。
-
-- `crimson_planks` -> `beneath:wood/planks/crimson`
-- `crimson_slab` -> `beneath:wood/planks/crimson_slab`
-- `crimson_stairs` -> `beneath:wood/planks/crimson_stairs`
-- `crimson_door` -> `beneath:wood/door/crimson`
-- `crimson_trapdoor` -> `beneath:wood/trapdoor/crimson`
-- `crimson_button` -> `beneath:wood/button/crimson`
-- `crimson_pressure_plate` -> `beneath:wood/pressure_plate/crimson`
-- `crimson_fence` -> `beneath:wood/fence/crimson`
-- `crimson_fence_gate` -> `beneath:wood/fence_gate/crimson`
-- `crimson_stem` -> `beneath:wood/log/crimson`
-- `crimson_hyphae` -> `beneath:wood/wood/crimson`
-- `stripped_crimson_stem` -> `beneath:wood/stripped_log/crimson`
-- `stripped_crimson_hyphae` -> `beneath:wood/stripped_wood/crimson`
-- `warped_planks` -> `beneath:wood/planks/warped`
-- `warped_slab` -> `beneath:wood/planks/warped_slab`
-- `warped_stairs` -> `beneath:wood/planks/warped_stairs`
-- `warped_door` -> `beneath:wood/door/warped`
-- `warped_trapdoor` -> `beneath:wood/trapdoor/warped`
-- `warped_button` -> `beneath:wood/button/warped`
-- `warped_pressure_plate` -> `beneath:wood/pressure_plate/warped`
-- `warped_fence` -> `beneath:wood/fence/warped`
-- `warped_fence_gate` -> `beneath:wood/fence_gate/warped`
-- `warped_stem` -> `beneath:wood/log/warped`
-- `warped_hyphae` -> `beneath:wood/wood/warped`
-- `stripped_warped_stem` -> `beneath:wood/stripped_log/warped`
-- `stripped_warped_hyphae` -> `beneath:wood/stripped_wood/warped`
-- `nether_gold_ore` -> `beneath:ore/normal_nether_gold`
+- NetherかつBeneathの対象registry entryが存在する場合だけ、Netherrack、Nether brick、soul soil系、fungus wood、ore、utility blockをBeneath/TFC相当へ置換する。
+- Beneath未導入時はBeneath classを参照せず、registry lookup失敗を元block維持へfallbackする。
+- Better FortressesとBeneath templateではutility-only scopeを基本とし、Nether固有地形をOverworld rock/soilへ変換しない。
 
 ## エンティティ装備置換
 
@@ -466,235 +289,27 @@ overworld dungeon 互換と同じ方針が明確な item だけを shared loot t
 
 - biome tag override は存在しない。依存元通り Nether 構造物のままにする。
 
-## TFC biome tag 内容
+## TFC biome tag仕様
 
-### `yungsbettertfc:tfc_mineshaft_oak_biomes`
+biomeの実値は `src/main/resources/data/yungsbettertfc/tags/worldgen/biome` を正本とする。ここでは選定規則とtag間制約を仕様とし、同じbiome IDを全件転記しない。
 
-- `tfc:active_shield_volcano`
-- `tfc:ancient_shield_volcano`
-- `tfc:burren_plains`
-- `tfc:burren_roche_moutonee`
-- `tfc:cenote_canyons`
-- `tfc:cenote_highlands`
-- `tfc:cenote_hills`
-- `tfc:cenote_plains`
-- `tfc:cenote_plateau`
-- `tfc:cenote_rolling_hills`
-- `tfc:doline_canyons`
-- `tfc:doline_highlands`
-- `tfc:doline_hills`
-- `tfc:doline_plains`
-- `tfc:doline_plateau`
-- `tfc:doline_rolling_hills`
-- `tfc:dormant_shield_volcano`
-- `tfc:drumlins`
-- `tfc:extinct_shield_volcano`
-- `tfc:extreme_doline_mountains`
-- `tfc:extreme_doline_plateau`
-- `tfc:guano_island`
-- `tfc:highlands`
-- `tfc:hills`
-- `tfc:inverted_patterned_ground`
-- `tfc:knob_and_kettle`
-- `tfc:lowlands`
-- `tfc:mountains`
-- `tfc:oceanic_mountains`
-- `tfc:old_mountains`
-- `tfc:patterned_ground`
-- `tfc:plains`
-- `tfc:plateau`
-- `tfc:plateau_wide`
-- `tfc:rolling_hills`
-- `tfc:salt_marsh`
-- `tfc:shilin_canyons`
-- `tfc:shilin_highlands`
-- `tfc:shilin_hills`
-- `tfc:shilin_plains`
-- `tfc:shilin_plateau`
-- `tfc:stone_circles`
-- `tfc:sunken_shield_volcano`
-- `tfc:tower_karst_bay`
-- `tfc:tower_karst_canyons`
-- `tfc:tower_karst_highlands`
-- `tfc:tower_karst_hills`
-- `tfc:tower_karst_plains`
-- `tfc:volcanic_mountains`
-- `tfc:volcanic_oceanic_mountains`
-- `tfc:lake`
-- `tfc:mountain_lake`
-- `tfc:old_mountain_lake`
-- `tfc:oceanic_mountain_lake`
-- `tfc:plateau_lake`
-- `tfc:river`
-- `tfc:tower_karst_lake`
-- `tfc:volcanic_mountain_lake`
-- `tfc:volcanic_oceanic_mountain_lake`
-- `tfc:shore`
-- `tfc:rocky_shores`
-- `tfc:setback_cliffs`
-- `tfc:terrace_upper`
-- `tfc:terrace_lower`
-- `tfc:embayments`
-- `tfc:tidal_flats`
-- `tfc:sea_stacks`
-- `tfc:shield_volcano_shore`
-- `tfc:old_shield_volcano_shore`
+| Tag | 選定規則 |
+| --- | --- |
+| `tfc_mineshaft_oak_biomes` | 温帯の森林・平地・低地。特殊砂漠、海洋、極寒、高山を除外 |
+| `tfc_mineshaft_desert_biomes` | yellow sand主体の乾燥地形 |
+| `tfc_mineshaft_red_desert_biomes` | red sand主体の乾燥地形 |
+| `tfc_mineshaft_mesa_biomes` | badlands/mesa相当の地形 |
+| `tfc_mineshaft_ice_biomes` | 氷河・極寒地形 |
+| `tfc_mineshaft_spruce_snowy_biomes` | 積雪森林・寒冷山地 |
+| `tfc_coastal_biomes` | 海岸・沿岸遷移地形 |
+| `tfc_deep_ocean_biomes` | 深海地形だけ |
+| `tfc_land_biomes` | YUNG陸上構造物を許可するTFC陸地。ocean、deep ocean、shore専用地形を除外 |
 
-### `yungsbettertfc:tfc_mineshaft_desert_biomes`
-
-- `tfc:dune_sea`
-- `tfc:grassy_dunes`
-- `tfc:salt_flats`
-- `tfc:mud_flats`
-- `tfc:coastal_dunes`
-
-### `yungsbettertfc:tfc_mineshaft_red_desert_biomes`
-
-- `tfc:badlands`
-- `tfc:burren_badlands`
-- `tfc:burren_badlands_tall`
-- `tfc:canyons`
-- `tfc:low_canyons`
-- `tfc:stair_step_canyons`
-- `tfc:whorled_canyons`
-
-### `yungsbettertfc:tfc_mineshaft_mesa_biomes`
-
-- `tfc:mesas`
-- `tfc:buttes`
-- `tfc:hoodoos`
-- `tfc:rocky_plateau`
-- `tfc:burren_plateau`
-
-### `yungsbettertfc:tfc_mineshaft_ice_biomes`
-
-- `#tfc:is_ice_sheet`
-
-### `yungsbettertfc:tfc_mineshaft_spruce_snowy_biomes`
-
-- `#tfc:is_glaciated`
-- `tfc:glacially_carved_mountains`
-- `tfc:glacially_carved_oceanic_mountains`
-- `tfc:tuyas`
-- `tfc:meltwater_lake`
-
-### `yungsbettertfc:tfc_coastal_biomes`
-
-- `tfc:shore`
-- `tfc:rocky_shores`
-- `tfc:coastal_dunes`
-- `tfc:setback_cliffs`
-- `tfc:terrace_upper`
-- `tfc:terrace_lower`
-- `tfc:embayments`
-- `tfc:tidal_flats`
-- `tfc:sea_stacks`
-- `tfc:shield_volcano_shore`
-- `tfc:old_shield_volcano_shore`
-- `tfc:ice_sheet_shore`
-
-### `yungsbettertfc:tfc_deep_ocean_biomes`
-
-- `tfc:deep_ocean`
-- `tfc:deep_ocean_trench`
-- `tfc:ice_sheet_oceanic`
-- `tfc:ocean`
-- `tfc:ocean_reef`
-
-### `yungsbettertfc:tfc_land_biomes`
-
-- `tfc:active_shield_volcano`
-- `tfc:ancient_shield_volcano`
-- `tfc:badlands`
-- `tfc:burren_badlands`
-- `tfc:burren_badlands_tall`
-- `tfc:burren_plains`
-- `tfc:burren_plateau`
-- `tfc:burren_roche_moutonee`
-- `tfc:buttes`
-- `tfc:canyons`
-- `tfc:cenote_canyons`
-- `tfc:cenote_highlands`
-- `tfc:cenote_hills`
-- `tfc:cenote_plains`
-- `tfc:cenote_plateau`
-- `tfc:cenote_rolling_hills`
-- `tfc:doline_canyons`
-- `tfc:doline_highlands`
-- `tfc:doline_hills`
-- `tfc:doline_plains`
-- `tfc:doline_plateau`
-- `tfc:doline_rolling_hills`
-- `tfc:dormant_shield_volcano`
-- `tfc:drumlins`
-- `tfc:dune_sea`
-- `tfc:extinct_shield_volcano`
-- `tfc:extreme_doline_mountains`
-- `tfc:extreme_doline_plateau`
-- `tfc:glacially_carved_mountains`
-- `tfc:glacially_carved_oceanic_mountains`
-- `tfc:glaciated_mountains`
-- `tfc:glaciated_oceanic_mountains`
-- `tfc:glaciated_shield_volcano`
-- `tfc:grassy_dunes`
-- `tfc:guano_island`
-- `tfc:highlands`
-- `tfc:hills`
-- `tfc:hoodoos`
-- `tfc:ice_sheet`
-- `tfc:ice_sheet_edge`
-- `tfc:ice_sheet_mountains`
-- `tfc:ice_sheet_mountains_edge`
-- `tfc:ice_sheet_oceanic_mountains`
-- `tfc:ice_sheet_oceanic_mountains_edge`
-- `tfc:ice_sheet_shield_volcano`
-- `tfc:ice_sheet_tuyas`
-- `tfc:ice_sheet_tuyas_edge`
-- `tfc:inverted_patterned_ground`
-- `tfc:knob_and_kettle`
-- `tfc:low_canyons`
-- `tfc:lowlands`
-- `tfc:mesas`
-- `tfc:mountains`
-- `tfc:mud_flats`
-- `tfc:oceanic_mountains`
-- `tfc:old_mountains`
-- `tfc:patterned_ground`
-- `tfc:plains`
-- `tfc:plateau`
-- `tfc:plateau_wide`
-- `tfc:rocky_plateau`
-- `tfc:rolling_hills`
-- `tfc:salt_flats`
-- `tfc:salt_marsh`
-- `tfc:shilin_canyons`
-- `tfc:shilin_highlands`
-- `tfc:shilin_hills`
-- `tfc:shilin_plains`
-- `tfc:shilin_plateau`
-- `tfc:stair_step_canyons`
-- `tfc:stone_circles`
-- `tfc:sunken_shield_volcano`
-- `tfc:tower_karst_bay`
-- `tfc:tower_karst_canyons`
-- `tfc:tower_karst_highlands`
-- `tfc:tower_karst_hills`
-- `tfc:tower_karst_plains`
-- `tfc:tuyas`
-- `tfc:volcanic_mountains`
-- `tfc:volcanic_oceanic_mountains`
-- `tfc:whorled_canyons`
-- `tfc:lake`
-- `tfc:meltwater_lake`
-- `tfc:mountain_lake`
-- `tfc:old_mountain_lake`
-- `tfc:oceanic_mountain_lake`
-- `tfc:plateau_lake`
-- `tfc:river`
-- `tfc:subglacial_lake`
-- `tfc:tower_karst_lake`
-- `tfc:volcanic_mountain_lake`
-- `tfc:volcanic_oceanic_mountain_lake`
+- Mineshaft variant tagは重複を避け、1 biomeが複数variantへ同時分類されないようにする。
+- coastalとdeep oceanを混同しない。Ocean Monumentはdeep ocean、沿岸構造物はcoastalを使う。
+- TFC biome IDは気候そのものではなく地形分類である。温度・降水条件が必要な場合はbiome名の推測ではなくTFC climate placementを使う。
+- TFC側でbiomeが追加・改名された場合は、全tagの包含、重複、未分類を機械的に監査する。
+- tag JSONは `replace: false` を維持し、他data packの追加を不必要に消さない。
 
 ## 戦利品仕様
 
